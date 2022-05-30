@@ -1,7 +1,7 @@
 import React from 'react'
 import logo4 from '../img/Logo4.png'
 
-function MyNavBar() {
+function NavBar() {
     return (
     <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -21,4 +21,4 @@ function MyNavBar() {
     )
 }
 
-export default MyNavBar
+export default NavBar
