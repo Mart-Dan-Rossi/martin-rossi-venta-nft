@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const Contador = ({valor})=> {
     const [x, setX] = useState(valor);
-    console.log(valor);
     
     return (
         <>

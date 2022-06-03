@@ -3,7 +3,7 @@ import logo4 from '../img/Logo4.png'
 import CartWidget from './CartWidget'
 import './NavBar.css'
 
-function NavBar() {
+function NavBar({productosEnCarrito}) {
     return (
     <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -17,7 +17,7 @@ function NavBar() {
               <a className="nav-link" href="#">Galería</a>
               <a className="nav-link" href="#">Precios</a>
             </div>
-            <CartWidget cantidadProductos={0}/>
+            <CartWidget cantidadProductos={productosEnCarrito}/>
           </div>
         </nav>
     </>
