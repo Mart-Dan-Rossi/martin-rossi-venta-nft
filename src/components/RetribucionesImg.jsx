@@ -20,11 +20,13 @@ function RetribucionesImg() {
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             {arrayNfts.map(nft => {
+                if(nft.agradecimientoLink != ""){
                 return  <>
                           <a href={nft.agradecimientoLink} target="_blank">
                             {nft.agradecimientoMensaje}
                           </a>
                         </>
+                }
             })}          
         </div>
       </li>
