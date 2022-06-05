@@ -5,6 +5,7 @@ import ItemCount from './components/ItemCount';
 import ItemListContainer from './components/ItemListContainer';
 import NavBar from './components/NavBar';
 import { useState } from 'react';
+import RetribucionesImg from './components/RetribucionesImg';
 
 function App() {
   const [productosEnCarrito, onAdd] = useState(0);
@@ -15,7 +16,7 @@ function App() {
               stock: 20
             },{
               nombre: "pan",
-              stock: 10
+              stock: 0
             }
         ];
 
@@ -25,8 +26,9 @@ function App() {
       <ItemListContainer greeting={"Bienvenidos a"}/>
       <Contador valor={0}/>
       {arrayDeProductos.map(producto => {
-        return <ItemCount inicial={producto.stock > 0 ? 1 : 0} producto={producto.nombre} stock={producto.stock} productosEnCarrito={productosEnCarrito} onAdd={onAdd}/>        
+        return <ItemCount key={producto.nombre} inicial={producto.stock > 0 ? 1 : 0} producto={producto.nombre} stock={producto.stock} productosEnCarrito={productosEnCarrito} onAdd={onAdd}/>        
       })}
+      <RetribucionesImg />
     </>
   );
 }

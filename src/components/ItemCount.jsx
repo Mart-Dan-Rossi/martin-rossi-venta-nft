@@ -4,7 +4,7 @@ import iconoSuma from '../img/icon-suma.svg'
 import iconoResta from '../img/icon-resta.svg'
 import { primeraLetraAMayusc } from '../utilidades/utilidades.js';
 
-function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd}) {    
+function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd}) {
     const [cantidadSeleccioable, setCantidadSeleccioable] = useState(inicial);
     const [cantidadEsteProductoEnElCarrito, setCantidadEsteProductoEnElCarrito] = useState(0);
     
@@ -21,6 +21,40 @@ function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd}) {
         }
     }
 
+    const clickBotonRestar = ()=> {
+        contrastarInventario(cantidadSeleccioable - 1)
+        if (cantidadSeleccioable > 0) {
+            setCantidadSeleccioable(cantidadSeleccioable - 1)
+        }
+    }
+
+    const clickBotonSumar = ()=> {
+        contrastarInventario(cantidadSeleccioable + 1)
+        if (cantidadSeleccioable + cantidadEsteProductoEnElCarrito < stock) {
+            setCantidadSeleccioable(cantidadSeleccioable + 1)
+        }
+    }
+
+    const clickBotonSumarAlCarrito = (event)=> {
+        const seccionEsteProducto = document.getElementById(`${producto}`)
+        const indicadorCantidadDisponible = seccionEsteProducto.querySelector(".cantidad-disponible")
+        const indicadorCantidadEnCarrito = seccionEsteProducto.querySelector(".cantidad-en-carrito")
+        event.preventDefault()
+        if (0 < cantidadSeleccioable && (cantidadEsteProductoEnElCarrito + cantidadSeleccioable) <= stock){
+            setCantidadEsteProductoEnElCarrito(cantidadEsteProductoEnElCarrito + cantidadSeleccioable)
+            onAdd(productosEnCarrito + cantidadSeleccioable)
+        }
+        if (cantidadEsteProductoEnElCarrito + cantidadSeleccioable >= stock) {
+            setCantidadSeleccioable(0)
+            indicadorCantidadDisponible.classList.add("resaltar-con-rojo");
+            indicadorCantidadEnCarrito.classList.add("resaltar-con-rojo");
+        } else if (cantidadEsteProductoEnElCarrito + cantidadSeleccioable < stock) {
+            setCantidadSeleccioable(1)
+            indicadorCantidadDisponible.classList.remove("resaltar-con-rojo");
+            indicadorCantidadEnCarrito.classList.remove("resaltar-con-rojo");
+        }
+    }
+
     return (
       <>
         <form>
@@ -32,43 +66,15 @@ function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd}) {
                 </div>
                 <div className="contenedor-selector-numerico">
                     <img className='boton-restar' src={iconoResta} alt="Botón restar" 
-                    onClick={()=> {
-                        contrastarInventario(cantidadSeleccioable - 1)
-                        if (cantidadSeleccioable > 0) {
-                            setCantidadSeleccioable(cantidadSeleccioable - 1)
-                        }
-                        }}/>
+                    onClick={()=> { clickBotonRestar() }}/>
                     <input type="text" value={cantidadSeleccioable} readOnly/>
                     <img className='boton-sumar' src={iconoSuma} alt="Botón sumar" 
-                    onClick={()=> {
-                        contrastarInventario(cantidadSeleccioable + 1)
-                        if (cantidadSeleccioable + cantidadEsteProductoEnElCarrito < stock) {
-                            setCantidadSeleccioable(cantidadSeleccioable + 1)
-                        }
-                    }}/>
+                    onClick={()=> { clickBotonSumar() }}/>
                 </div>
             </div>
             <div className="contenedor-boton-agregar">
                 <button className="agregar-al-carrito"
-                onClick={(event)=>{
-                    const seccionEsteProducto = document.getElementById(`${producto}`)
-                    const indicadorCantidadDisponible = seccionEsteProducto.querySelector(".cantidad-disponible")
-                    const indicadorCantidadEnCarrito = seccionEsteProducto.querySelector(".cantidad-en-carrito")
-                    event.preventDefault()
-                    if (0 < cantidadSeleccioable && (cantidadEsteProductoEnElCarrito + cantidadSeleccioable) <= stock){
-                        setCantidadEsteProductoEnElCarrito(cantidadEsteProductoEnElCarrito + cantidadSeleccioable)
-                        onAdd(productosEnCarrito + cantidadSeleccioable)
-                    }
-                    if (cantidadEsteProductoEnElCarrito + cantidadSeleccioable >= stock) {
-                        setCantidadSeleccioable(0)
-                        indicadorCantidadDisponible.classList.add("resaltar-con-rojo");
-                        indicadorCantidadEnCarrito.classList.add("resaltar-con-rojo");
-                    } else if (cantidadEsteProductoEnElCarrito + cantidadSeleccioable < stock) {
-                        setCantidadSeleccioable(1)
-                        indicadorCantidadDisponible.classList.remove("resaltar-con-rojo");
-                        indicadorCantidadEnCarrito.classList.remove("resaltar-con-rojo");
-                    }
-                }}>Agregar al carrito</button>
+                onClick={(event)=>{ clickBotonSumarAlCarrito(event) }}>Agregar al carrito</button>
             </div>
         </form>
       </>
