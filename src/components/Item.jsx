@@ -1,14 +1,15 @@
 import React from 'react'
 
 function Item({nft}) {
+  const {id, imgURL, nombre, lore, existentes, stock} = nft
   return (
     <>
     <div className="card">
-      <img src={nft.imgURL} className="card-img-top" alt={nft.nombre}/>
+      <img src={imgURL} className="card-img-top" alt={nombre}/>
       <div className="card-body">
-        <h5 className="card-title">{nft.nombre}</h5>
-        <p className="card-text lore">{nft.lore}</p>
-        <p className='card-text'>En stock: {nft.stock}/{nft.existentes}</p>
+        <h5 className="card-title">{nombre}</h5>
+        <p className="card-text lore">{lore}</p>
+        <p className='card-text'>En stock: {stock}/{existentes}</p>
         <a href="#" className="btn btn-primary">Comprar</a>
       </div>
     </div>
