@@ -7,7 +7,8 @@
         "agradecimientoLink" : "https://www.freepik.es/vectores/pan-frances",
         "agradecimientoMensaje" : "Vector de pan frances creado por brgfx - www.freepik.es",
         "existentes" : 10,
-        "stock" : 10
+        "stock" : 10,
+        "precio" : 20
     },{
         "id" : 2,
         "imgURL" : "galletitas.jpg",
@@ -16,6 +17,7 @@
         "agradecimientoLink" : "https://www.freepik.es/vectores/galletas-dibujo",
         "agradecimientoMensaje" : "Vector de galletas dibujo creado por catalyststuff - www.freepik.es",
         "existentes" : 10,
-        "stock" : 10
+        "stock" : 10,
+        "precio" : 10
     }
 ]

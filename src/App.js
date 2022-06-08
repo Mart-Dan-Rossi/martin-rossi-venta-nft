@@ -15,10 +15,12 @@ function App() {
   const arrayDeProductos = [
             {
               nombre: "galletitas",
-              stock: 20
+              stock: 20,
+              precio: 20
             },{
               nombre: "pan",
-              stock: 0
+              stock: 0,
+              precio: 10
             }
         ];
 
@@ -28,7 +30,7 @@ function App() {
       <ItemListContainer greeting={"Bienvenidos a"}/>
       <Contador valor={0}/>
       {arrayDeProductos.map(producto => {
-        return <ItemCount key={producto.nombre} inicial={producto.stock > 0 ? 1 : 0} producto={producto.nombre} stock={producto.stock} productosEnCarrito={productosEnCarrito} onAdd={onAdd}/>        
+        return <ItemCount key={producto.nombre} inicial={producto.stock > 0 ? 1 : 0} producto={producto.nombre} stock={producto.stock} productosEnCarrito={productosEnCarrito} onAdd={onAdd} precio={producto.precio}/>        
       })}
       <ItemDetailContainer itemId={itemId} productosEnCarrito={productosEnCarrito} onAdd={onAdd}/>
       <RetribucionesImg />

@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import './ItemCount.css'
 import iconoSuma from '../img/icon-suma.svg'
 import iconoResta from '../img/icon-resta.svg'
-import { primeraLetraAMayusc } from '../utilidades/utilidades.js';
 
-function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd}) {
+function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd, precio}) {
     const [cantidadSeleccioable, setCantidadSeleccioable] = useState(inicial);
     const [cantidadEsteProductoEnElCarrito, setCantidadEsteProductoEnElCarrito] = useState(0);
     
@@ -70,6 +69,7 @@ function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd}) {
                     <img className='boton-sumar' src={iconoSuma} alt="Botón sumar" 
                     onClick={()=> { clickBotonSumar() }}/>
                 </div>
+                <span className="precio">Precio unidad:<span> ${precio}</span></span>
             </div>
             <div className="contenedor-boton-agregar">
                 <button className="agregar-al-carrito"

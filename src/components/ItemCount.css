@@ -55,6 +55,11 @@ form > div {
     right: 20px;
 }
 
+.precio {
+    line-height: 40px;
+    font-weight: bold;
+}
+
 .agregar-al-carrito {
     background-color: #fdeae6;
     border: 3px #fb3838 solid;
