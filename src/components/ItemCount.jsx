@@ -59,7 +59,6 @@ function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd}) {
       <>
         <form>
             <div id={producto} className="contenedor-parte-principal">
-                <p>{primeraLetraAMayusc(producto)}</p>
                 <div className="contenedor-control-inventario">
                     <span className='cantidad-disponible'>Disponibles: {stock}</span>
                     <span className="cantidad-en-carrito">En carrito: {cantidadEsteProductoEnElCarrito}</span>

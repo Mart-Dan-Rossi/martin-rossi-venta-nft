@@ -6,9 +6,11 @@ import ItemListContainer from './components/ItemListContainer';
 import NavBar from './components/NavBar';
 import { useState } from 'react';
 import RetribucionesImg from './components/RetribucionesImg';
+import ItemDetailContainer from './components/ItemDetailContainer';
 
 function App() {
   const [productosEnCarrito, onAdd] = useState(0);
+  let itemId = 1;
 
   const arrayDeProductos = [
             {
@@ -28,6 +30,7 @@ function App() {
       {arrayDeProductos.map(producto => {
         return <ItemCount key={producto.nombre} inicial={producto.stock > 0 ? 1 : 0} producto={producto.nombre} stock={producto.stock} productosEnCarrito={productosEnCarrito} onAdd={onAdd}/>        
       })}
+      <ItemDetailContainer itemId={itemId} productosEnCarrito={productosEnCarrito} onAdd={onAdd}/>
       <RetribucionesImg />
     </>
   );

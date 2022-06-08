@@ -8,7 +8,6 @@ function Item({nft}) {
       <img src={imgURL} className="card-img-top" alt={nombre}/>
       <div className="card-body">
         <h5 className="card-title">{nombre}</h5>
-        <p className="card-text lore">{lore}</p>
         <p className='card-text'>En stock: {stock}/{existentes}</p>
         <a href="#" className="btn btn-primary">Comprar</a>
       </div>
