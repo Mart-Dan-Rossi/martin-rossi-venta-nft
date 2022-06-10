@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ItemList from './ItemList'
+import {primeraLetraAMayusc} from '../utilidades/utilidades';
 import './ItemListContainer.css'
 
 function ItemListContainer({greeting}) {
   const [arrayNfts, setArrayNfts] = useState([])
+  const categoryName = "todos los NFTs"
 
   
   useEffect(() => {
@@ -20,8 +22,9 @@ function ItemListContainer({greeting}) {
       <div className='contenedor-encabezado'>
           <p>{greeting}</p>
          <h1>Martín NFT</h1>
+         <h2 className="categoryName">{primeraLetraAMayusc(categoryName)}</h2>
       </div>
-      <ItemList arrayNfts={arrayNfts}/>
+      <ItemList arrayNfts={arrayNfts} />
     </>
   )
 }

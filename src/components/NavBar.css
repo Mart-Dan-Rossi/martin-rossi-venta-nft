@@ -5,3 +5,13 @@
 .navbar-collapse {
     justify-content: space-between;
 }
+
+.navbar-nav .dropdown-menu {
+    left: 266px;
+    top: 54px;
+}
+
+.navbar-nav .dropdown-menu > * {
+    margin: 0 10px;
+    color: black;
+}

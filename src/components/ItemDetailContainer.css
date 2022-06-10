@@ -5,7 +5,7 @@
 
     max-width: 90rem;
     width: 90%;
-    margin: 0 auto;
+    margin: 10px auto;
     border: 10px solid var(--secondary);
     border-radius: 8px;
     background-color: lightgray;
