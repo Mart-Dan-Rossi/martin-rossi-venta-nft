@@ -3,16 +3,16 @@ import { useParams } from 'react-router-dom'
 import ItemDetail from './ItemDetail'
 import './ItemDetailContainer.css'
 
-const getItem = (setFunction, nombre)=> {
+const getItem = (setFunction, nombreAFiltrar)=> {
     setTimeout(()=>{
         fetch("../nfts.json")
-        .then(res => res.json())
-        .then(json => setFunction(json.find(obj => {
-            return obj.nombre === nombre}))
-            )
-        .catch(err => console.error("Error al importar nfts.json en ItemDetailContain.jsx:", err))
-        }, 2000)
-    }
+            .then(res => res.json())
+            .then(json => setFunction(json.find(nft => {
+                return nft.nombre === nombreAFiltrar}))
+                )
+            .catch(err => console.error("Error al importar nfts.json en ItemDetailContain.jsx:", err))
+    }, 2000)
+}
     
 function ItemDetailContainer({productosEnCarrito, onAdd}) {
     const [item, setItem] = useState({})

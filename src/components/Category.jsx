@@ -27,7 +27,7 @@ function Category({greeting}) {
            <h1>Martín NFT</h1>
            <h2 className="categoryName">{primeraLetraAMayusc(categoryName)}</h2>
         </div>
-        {console.log("arrayNfts: ",arrayNfts)}
+        {/* Hago el siguiente if puesto que hasta que se hace el fetch arrayNfts es un array vacío lo que genera un error en el mapeo que sucede dentro de ItemList*/}
         {arrayNfts != [] ? <ItemList arrayNfts={arrayNfts} /> : <div className="noDisplay"></div>}
         
       </>

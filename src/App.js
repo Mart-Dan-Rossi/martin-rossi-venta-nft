@@ -9,8 +9,8 @@ import Category from './components/Category';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-  const [productosEnCarrito, onAdd] = useState(0);
-  const mensajeBienvenida = "Bienvenidos a";
+  const [productosEnCarrito, onAdd] = useState(0)
+  const mensajeBienvenida = "Bienvenidos a"
 
   return (
     <>

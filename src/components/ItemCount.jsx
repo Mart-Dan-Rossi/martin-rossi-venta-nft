@@ -3,12 +3,14 @@ import './ItemCount.css'
 import iconoSuma from '../img/icon-suma.svg'
 import iconoResta from '../img/icon-resta.svg'
 
-function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd, precio}) {
-    const [cantidadSeleccioable, setCantidadSeleccioable] = useState(inicial);
-    const [cantidadEsteProductoEnElCarrito, setCantidadEsteProductoEnElCarrito] = useState(0);
+function ItemCount({inicial, item, productosEnCarrito, onAdd}) {
+    const {nombre, stock, precio} = item
+    console.log(item)
+    const [cantidadSeleccioable, setCantidadSeleccioable] = useState(inicial)
+    const [cantidadEsteProductoEnElCarrito, setCantidadEsteProductoEnElCarrito] = useState(0)
     
     const contrastarInventario = (cantidadActual)=> {
-        const seccionEsteProducto = document.getElementById(`${producto}`)
+        const seccionEsteProducto = document.getElementById(`${nombre}`)
         const indicadorCantidadDisponible = seccionEsteProducto.querySelector(".cantidad-disponible")
         const indicadorCantidadEnCarrito = seccionEsteProducto.querySelector(".cantidad-en-carrito")
         if (cantidadActual <= stock && cantidadActual + cantidadEsteProductoEnElCarrito <= stock) {
@@ -35,7 +37,7 @@ function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd, precio}
     }
 
     const clickBotonSumarAlCarrito = (event)=> {
-        const seccionEsteProducto = document.getElementById(`${producto}`)
+        const seccionEsteProducto = document.getElementById(`${nombre}`)
         const indicadorCantidadDisponible = seccionEsteProducto.querySelector(".cantidad-disponible")
         const indicadorCantidadEnCarrito = seccionEsteProducto.querySelector(".cantidad-en-carrito")
         event.preventDefault()
@@ -57,7 +59,7 @@ function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd, precio}
     return (
       <>
         <form>
-            <div id={producto} className="contenedor-parte-principal">
+            <div id={nombre} className="contenedor-parte-principal">
                 <div className="contenedor-control-inventario">
                     <span className='cantidad-disponible'>Disponibles: {stock}</span>
                     <span className="cantidad-en-carrito">En carrito: {cantidadEsteProductoEnElCarrito}</span>
@@ -69,7 +71,7 @@ function ItemCount({inicial, producto, stock, productosEnCarrito, onAdd, precio}
                     <img className='boton-sumar' src={iconoSuma} alt="Botón sumar" 
                     onClick={()=> { clickBotonSumar() }}/>
                 </div>
-                <span className="precio">Precio unidad:<span> ${precio}</span></span>
+                <span className="precio">Precio unidad: <span>${precio}</span></span>
             </div>
             <div className="contenedor-boton-agregar">
                 <button className="agregar-al-carrito"
