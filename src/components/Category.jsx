@@ -13,6 +13,7 @@ function Category({greeting}) {
       setTimeout(()=>{
         fetch("../nfts.json")
           .then(res => res.json())
+          //Utilizo el .filter para retornar sólo los obj que contienen la categoría igual a la pasada en categoryName
           .then(json => setArrayNfts(json.filter(obj => {
             return obj.category === categoryName}))
             )

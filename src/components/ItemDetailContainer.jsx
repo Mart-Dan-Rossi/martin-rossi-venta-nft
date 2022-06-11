@@ -7,6 +7,7 @@ const getItem = (setFunction, nombreAFiltrar)=> {
     setTimeout(()=>{
         fetch("../nfts.json")
             .then(res => res.json())
+            //Utilizo el .find para recorrer el json. Por cada nft sólo retorno sólo el nft con nombre igual al que paso en la variable nombreAFiltrar
             .then(json => setFunction(json.find(nft => {
                 return nft.nombre === nombreAFiltrar}))
                 )
