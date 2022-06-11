@@ -9,6 +9,7 @@ function ItemDetail({item, cantidadProductosEnCarritoEnCarrito, onAdd}) {
       <div className="item-detail">
         <div className="item-header">
           <h4 className="card-title">#{id}</h4>
+          {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
           <h4 className="card-title">{primeraLetraAMayusc(category)}</h4>
         </div>
         <img src={"../"+imgURL} className="item-detail-img-top" alt={"imágen " + nombre}/>

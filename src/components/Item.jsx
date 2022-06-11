@@ -10,6 +10,7 @@ function Item({nft}) {
     <div className="card">
       <img src={"../"+imgURL} className="card-img-top" alt={nombre}/>
       <div className="card-body">
+     {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
         <h5 className="card-title">{primeraLetraAMayusc(nombre)}</h5>
         <h5 className="card-title">{primeraLetraAMayusc(category)}</h5>
         <p className='card-text'>En stock: {stock}/{existentes}</p>
