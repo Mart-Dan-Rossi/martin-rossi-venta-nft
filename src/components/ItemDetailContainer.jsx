@@ -14,7 +14,7 @@ const getItem = (setFunction, nombreAFiltrar)=> {
     }, 2000)
 }
     
-function ItemDetailContainer({productosEnCarrito, onAdd}) {
+function ItemDetailContainer({cantidadProductosEnCarritoEnCarrito, onAdd}) {
     const [item, setItem] = useState({})
     const { nombre } = useParams()
 
@@ -24,7 +24,7 @@ function ItemDetailContainer({productosEnCarrito, onAdd}) {
 
   return (
     <div className='item-detail-container'>
-        <ItemDetail item={item} productosEnCarrito={productosEnCarrito} onAdd={onAdd}/>
+        <ItemDetail item={item} cantidadProductosEnCarritoEnCarrito={cantidadProductosEnCarritoEnCarrito} onAdd={onAdd}/>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import './ItemCount.css'
 import iconoSuma from '../img/icon-suma.svg'
 import iconoResta from '../img/icon-resta.svg'
 
-function ItemCount({inicial, item, productosEnCarrito, onAdd}) {
+function ItemCount({inicial, item, cantidadProductosEnCarritoEnCarrito, onAdd}) {
     const {nombre, stock, precio} = item
     console.log(item)
     const [cantidadSeleccioable, setCantidadSeleccioable] = useState(inicial)
@@ -43,7 +43,7 @@ function ItemCount({inicial, item, productosEnCarrito, onAdd}) {
         event.preventDefault()
         if (0 < cantidadSeleccioable && (cantidadEsteProductoEnElCarrito + cantidadSeleccioable) <= stock){
             setCantidadEsteProductoEnElCarrito(cantidadEsteProductoEnElCarrito + cantidadSeleccioable)
-            onAdd(productosEnCarrito + cantidadSeleccioable)
+            onAdd(cantidadProductosEnCarritoEnCarrito + cantidadSeleccioable)
         }
         if (cantidadEsteProductoEnElCarrito + cantidadSeleccioable >= stock) {
             setCantidadSeleccioable(0)

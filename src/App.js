@@ -9,16 +9,17 @@ import Category from './components/Category';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-  const [productosEnCarrito, onAdd] = useState(0)
+  const [cantidadProductosEnCarritoEnCarrito, onAdd] = useState(0)
   const mensajeBienvenida = "Bienvenidos a"
 
   return (
     <>
     <BrowserRouter>
-      <NavBar productosEnCarrito={productosEnCarrito}/>
+      <NavBar cantidadProductosEnCarritoEnCarrito={cantidadProductosEnCarritoEnCarrito}/>
     <Routes>
       <Route path='/' element={<ItemListContainer greeting={mensajeBienvenida}/>} />
-      <Route path='/producto/:nombre' element={<ItemDetailContainer productosEnCarrito={productosEnCarrito} onAdd={onAdd}/>} />
+      <Route path='/home' element={<ItemListContainer greeting={mensajeBienvenida}/>} />
+      <Route path='/producto/:nombre' element={<ItemDetailContainer cantidadProductosEnCarritoEnCarrito={cantidadProductosEnCarritoEnCarrito} onAdd={onAdd}/>} />
       <Route path='/categoria/:categoryName' element={<Category greeting={mensajeBienvenida} />} />
     </Routes>
       <RetribucionesImg />
