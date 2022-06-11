@@ -7,6 +7,7 @@ const getItem = (setFunction, nombreAFiltrar)=> {
     setTimeout(()=>{
         fetch("../nfts.json")
             .then(res => res.json())
+            //setFunction viene por parámetro y es la función utilizada para cambiar un estado
             //Utilizo el .find para recorrer el json. Por cada nft sólo retorno sólo el nft con nombre igual al que paso en la variable nombreAFiltrar
             .then(json => setFunction(json.find(nft => {
                 return nft.nombre === nombreAFiltrar}))
@@ -15,7 +16,7 @@ const getItem = (setFunction, nombreAFiltrar)=> {
     }, 2000)
 }
     
-function ItemDetailContainer({cantidadProductosEnCarritoEnCarrito, onAdd}) {
+function ItemDetailContainer({cantidadProductosEnCarrito, onAdd}) {
     const [item, setItem] = useState({})
     const { nombre } = useParams()
 
@@ -25,7 +26,7 @@ function ItemDetailContainer({cantidadProductosEnCarritoEnCarrito, onAdd}) {
 
   return (
     <div className='item-detail-container'>
-        <ItemDetail item={item} cantidadProductosEnCarritoEnCarrito={cantidadProductosEnCarritoEnCarrito} onAdd={onAdd}/>
+        <ItemDetail item={item} cantidadProductosEnCarrito={cantidadProductosEnCarrito} onAdd={onAdd}/>
     </div>
   )
 }

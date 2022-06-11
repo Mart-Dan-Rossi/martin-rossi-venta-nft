@@ -9,17 +9,18 @@ import Category from './components/Category';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-  const [cantidadProductosEnCarritoEnCarrito, onAdd] = useState(0)
+  const [cantidadProductosEnCarrito, onAdd] = useState(0)
   const mensajeBienvenida = "Bienvenidos a"
 
   return (
     <>
     <BrowserRouter>
-      <NavBar cantidadProductosEnCarritoEnCarrito={cantidadProductosEnCarritoEnCarrito}/>
+      <NavBar cantidadProductosEnCarrito={cantidadProductosEnCarrito}/>
     <Routes>
       <Route path='/' element={<ItemListContainer greeting={mensajeBienvenida}/>} />
       <Route path='/home' element={<ItemListContainer greeting={mensajeBienvenida}/>} />
-      <Route path='/producto/:nombre' element={<ItemDetailContainer cantidadProductosEnCarritoEnCarrito={cantidadProductosEnCarritoEnCarrito} onAdd={onAdd}/>} />
+      {/* Paso el estado cantidadProductosEnCarrito para que se pueda utilizar el dato dentro del componente y también paso la función con la que se puede modificar para que pueda ser modificable dentro del mismo*/}
+      <Route path='/producto/:nombre' element={<ItemDetailContainer cantidadProductosEnCarrito={cantidadProductosEnCarrito} onAdd={onAdd}/>} />
       <Route path='/categoria/:categoryName' element={<Category greeting={mensajeBienvenida} />} />
     </Routes>
       <RetribucionesImg />

@@ -4,7 +4,7 @@ import logo4 from '../img/Logo4.png'
 import CartWidget from './CartWidget'
 import './NavBar.css'
 
-function NavBar({cantidadProductosEnCarritoEnCarrito}) {
+function NavBar({cantidadProductosEnCarrito}) {
     return (
     <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -24,7 +24,7 @@ function NavBar({cantidadProductosEnCarritoEnCarrito}) {
                 <Link to={"/categoria/carnes"}>Carnes</Link>
               </div>
             </div>
-            <CartWidget cantidadProductosEnCarrito={cantidadProductosEnCarritoEnCarrito}/>
+            <CartWidget cantidadProductosEnCarrito={cantidadProductosEnCarrito}/>
           </div>
         </nav>
     </>
