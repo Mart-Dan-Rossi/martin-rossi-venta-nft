@@ -5,7 +5,6 @@ import iconoResta from '../img/icon-resta.svg'
 
 function ItemCount({inicial, item, cantidadProductosEnCarrito, onAdd}) {
     const {nombre, stock, precio} = item
-    console.log(item)
     const [cantidadSeleccioable, setCantidadSeleccioable] = useState(inicial)
     const [cantidadEsteProductoEnElCarrito, setCantidadEsteProductoEnElCarrito] = useState(0)
     

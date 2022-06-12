@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemDetail from './ItemDetail'
 import './ItemDetailContainer.css'
+import Loading from './Loading'
 
-const getItem = (setFunction, nombreAFiltrar)=> {
+const getItem = (setFunction, nombreAFiltrar, setLoading)=> {
     setTimeout(()=>{
         fetch("../nfts.json")
             .then(res => res.json())
@@ -13,6 +14,7 @@ const getItem = (setFunction, nombreAFiltrar)=> {
                 return nft.nombre === nombreAFiltrar}))
                 )
             .catch(err => console.error("Error al importar nfts.json en ItemDetailContain.jsx:", err))
+            .finally(setLoading(false))
     }, 2000)
 }
     
@@ -20,15 +22,25 @@ function ItemDetailContainer({cantidadProductosEnCarrito, onAdd}) {
     const [item, setItem] = useState({})
     const { nombre } = useParams()
 
+    const [loading, setLoading] = useState(false)
+
+
     useEffect(() => {
-        getItem(setItem, nombre)
+        setLoading(true)
+        getItem(setItem, nombre, setLoading)
       }, [])
 
-  return (
-    <div className='item-detail-container'>
-        <ItemDetail item={item} cantidadProductosEnCarrito={cantidadProductosEnCarrito} onAdd={onAdd}/>
-    </div>
-  )
+      if(loading) {
+        return (
+            <Loading />
+        )
+      } else {
+          return (
+            <div className='item-detail-container'>
+                <ItemDetail item={item} cantidadProductosEnCarrito={cantidadProductosEnCarrito} onAdd={onAdd}/>
+            </div>
+          )
+      }
 }
 
 export default ItemDetailContainer

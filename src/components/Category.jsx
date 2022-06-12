@@ -3,25 +3,35 @@ import {useEffect, useState} from 'react';
 import ItemList from './ItemList';
 import {useParams} from 'react-router-dom';
 import {primeraLetraAMayusc} from '../utilidades/utilidades';
+import Loading from './Loading';
 
 function Category({greeting}) {
     const [arrayNfts, setArrayNfts] = useState([])
     const { categoryName } = useParams()
 
+    const [loading, setLoading] = useState(false)
+
   
     useEffect(() => {
+      setLoading(true)
       setTimeout(()=>{
         fetch("../nfts.json")
-          .then(res => res.json())
-          //Utilizo el .filter para retornar sólo los obj que contienen la categoría igual a la pasada en categoryName
-          .then(json => setArrayNfts(json.filter(obj => {
-            return obj.category === categoryName}))
-            )
-          .catch(err => console.error("Error al importar nfts.json:", err))
+        .then(res => res.json())
+        //Utilizo el .filter para retornar sólo los obj que contienen la categoría igual a la pasada en categoryName
+        .then(json => setArrayNfts(json.filter(obj => {
+          return obj.category === categoryName}))
+          )
+        .catch(err => console.error("Error al importar nfts.json:", err))
+        .finally(setLoading(false))
       }, 2000)
     }, [categoryName])
-  
-    return (
+
+    if(loading) {
+      return (
+        <Loading />
+      )
+    } else {      
+      return (
       <>
         <div className='contenedor-encabezado'>
             <p>{greeting}</p>
@@ -33,7 +43,8 @@ function Category({greeting}) {
         {arrayNfts != [] ? <ItemList arrayNfts={arrayNfts} /> : <div className="noDisplay"></div>}
         
       </>
-    )
+      )
+    }
   }
 
 export default Category

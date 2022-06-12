@@ -1,3 +1,15 @@
+<!-- Bienvenidos a martin-nfts. -->
+    Este proyecto está orientado únicamente a practicar herramientas aprendidas durante el curso de React de CoderHouse.
+
+    Emula ser una tienda de NFT´s. Estos NFT´s serían "coleccionables" cada uno con una cantidad limitada de ediciones, con un lore único y agrupadas en varios tipos.
+    Para navegar por el sitio los usuarios podrán acceder a una galería general donde verán todos los productos así como también podrá acceder a un filtro de tipos de NFTs. Más adelante
+agregaré el acceso al carrito de compras para que los usuarios puedan "concretarla".
+
+    Las únicas dependencias que utilizo son las brindadas como opcionales u obligatorias en la cursada.
+
+    A continuación hay info relevante a react.
+<!-- Fin bienvenida -->
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
