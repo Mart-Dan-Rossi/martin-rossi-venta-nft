@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './ItemCount.css'
 import iconoSuma from '../img/icon-suma.svg'
 import iconoResta from '../img/icon-resta.svg'
+import {MiContexto} from '../App.js'
 
-function ItemCount({inicial, item, cantidadProductosEnCarrito, onAdd}) {
+function ItemCount({inicial, item, onAdd}) {
     const {nombre, stock, precio} = item
     const [cantidadSeleccioable, setCantidadSeleccioable] = useState(inicial)
+    const {cantidadProductosEnCarrito, setCantidadCarrito} = useContext(MiContexto)
     const [cantidadEsteProductoEnElCarrito, setCantidadEsteProductoEnElCarrito] = useState(0)
     
     const contrastarInventario = (cantidadActual)=> {
@@ -42,7 +44,7 @@ function ItemCount({inicial, item, cantidadProductosEnCarrito, onAdd}) {
         event.preventDefault()
         if (0 < cantidadSeleccioable && (cantidadEsteProductoEnElCarrito + cantidadSeleccioable) <= stock){
             setCantidadEsteProductoEnElCarrito(cantidadEsteProductoEnElCarrito + cantidadSeleccioable)
-            onAdd(cantidadProductosEnCarrito + cantidadSeleccioable)
+            setCantidadCarrito(cantidadProductosEnCarrito + cantidadSeleccioable)
         }
         if (cantidadEsteProductoEnElCarrito + cantidadSeleccioable >= stock) {
             setCantidadSeleccioable(0)
@@ -53,6 +55,7 @@ function ItemCount({inicial, item, cantidadProductosEnCarrito, onAdd}) {
             indicadorCantidadDisponible.classList.remove("resaltar-con-rojo");
             indicadorCantidadEnCarrito.classList.remove("resaltar-con-rojo");
         }
+        onAdd(false)
     }
 
     return (

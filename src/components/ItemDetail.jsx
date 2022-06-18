@@ -2,9 +2,11 @@ import React from 'react'
 import ItemCount from './ItemCount'
 import {primeraLetraAMayusc} from '../utilidades/utilidades';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-function ItemDetail({item, cantidadProductosEnCarrito, onAdd}) {
+function ItemDetail({item}) {
     const {id, imgURL, nombre, lore, stock, category} = item
+    const [mostrarItemCount, onAdd] = useState(true)
     
     return (
       <>
@@ -21,7 +23,11 @@ function ItemDetail({item, cantidadProductosEnCarrito, onAdd}) {
           <h5 className="card-title">{primeraLetraAMayusc(nombre)}</h5>
           <p className="card-text lore">{lore}</p>
         </div>
-        <ItemCount key={id} inicial={stock > 0 ? 1 : 0} item={item} cantidadProductosEnCarrito={cantidadProductosEnCarrito} onAdd={onAdd}/>
+        {mostrarItemCount ? 
+           <ItemCount key={id} inicial={stock > 0 ? 1 : 0} item={item} onAdd={onAdd}/>
+           : 
+           <Link to="/miCarrito" className='btn btn-primary'>Ir al carrito</Link>
+        }        
       </div>
       </>
     )
