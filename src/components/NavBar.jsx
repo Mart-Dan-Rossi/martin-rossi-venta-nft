@@ -1,13 +1,11 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo4 from '../img/Logo4.png'
+import { primeraLetraAMayusc } from '../utilidades/utilidades'
 import CartWidget from './CartWidget'
-import {primeraLetraAMayusc} from '../utilidades/utilidades';
 import './NavBar.css'
 
-function NavBar() {
+function NavBar({cantidadProductosEnCarrito}) {
   const [navLinks, setNavLinks] = useState([]);
 
   useEffect(()=> {
@@ -32,7 +30,7 @@ function NavBar() {
               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                 Categorías
               </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">                
                 {navLinks.map(categoria => {
                   return (
                   <Link to={`/categoria/${categoria}`}>
@@ -42,7 +40,7 @@ function NavBar() {
                 )}
               </div>
             </div>
-            <CartWidget />
+            <CartWidget cantidadProductosEnCarrito={cantidadProductosEnCarrito}/>
           </div>
         </nav>
     </>
