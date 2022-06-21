@@ -5,7 +5,7 @@ import { primeraLetraAMayusc } from '../utilidades/utilidades'
 import CartWidget from './CartWidget'
 import './NavBar.css'
 
-function NavBar({cantidadProductosEnCarrito}) {
+function NavBar() {
   const [navLinks, setNavLinks] = useState([]);
 
   useEffect(()=> {
@@ -40,7 +40,7 @@ function NavBar({cantidadProductosEnCarrito}) {
                 )}
               </div>
             </div>
-            <CartWidget cantidadProductosEnCarrito={cantidadProductosEnCarrito}/>
+            <CartWidget />
           </div>
         </nav>
     </>

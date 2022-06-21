@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
 import './CartWidget.css'
 
-function CartWidget({cantidadProductosEnCarrito}) {
+function CartWidget() {
+  const {cantidadProductosEnCarrito} = useContext(CartContext)
+
   return (
     // No quiero cambiar este <a> a Link aún puesto que todavía no creé un componente al que ir aún
     <a href='#' className='contenedor-carro-de-compras'>

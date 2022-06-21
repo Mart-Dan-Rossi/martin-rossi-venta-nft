@@ -6,7 +6,8 @@ export const CartContext = createContext()
 const {Provider} = CartContext;
 
 const MyProvider = ({children}) => {
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([])    
+    const [cantidadProductosEnCarrito, setCantidadCarrito] = useState(0)
 
     const isInCart = (id)=> {
         //Método Some es un método de array que devuelve un boolean
@@ -46,7 +47,7 @@ const MyProvider = ({children}) => {
         return setCart(cart.filter(producto => producto.id != id))
     }
 
-    const cantidadEnCarrito = ()=> {
+    const cantidadEsteProductoEnCarrito = ()=> {
         return cart ? cart.reduce((acc, producto)=> acc += producto.cantidadEnElCarrito, 0) : 0
     }
 
@@ -55,7 +56,7 @@ const MyProvider = ({children}) => {
     }
 
 
-    return <Provider value={{cart, isInCart, agregarItem, vaciarCarrito, borrarItem, cantidadEnCarrito, obtenerPrecioPorTipoDeProducto}}>{children}</Provider>
+    return <Provider value={{cart, cantidadProductosEnCarrito, setCantidadCarrito, isInCart, agregarItem, vaciarCarrito, borrarItem, cantidadEsteProductoEnCarrito, obtenerPrecioPorTipoDeProducto}}>{children}</Provider>
 }
 
 export default MyProvider

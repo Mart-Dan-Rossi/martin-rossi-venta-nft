@@ -2,12 +2,12 @@ import React, { useState, useContext } from 'react'
 import './ItemCount.css'
 import iconoSuma from '../img/icon-suma.svg'
 import iconoResta from '../img/icon-resta.svg'
-import {MiContexto} from '../App.js'
+import { CartContext } from '../context/CartContext'
 
 function ItemCount({inicial, item, onAdd}) {
     const {nombre, stock, precio} = item
     const [cantidadSeleccioable, setCantidadSeleccioable] = useState(inicial)
-    const {cantidadProductosEnCarrito, setCantidadCarrito} = useContext(MiContexto)
+    const {cantidadProductosEnCarrito, setCantidadCarrito} = useContext(CartContext)
     const [cantidadEsteProductoEnElCarrito, setCantidadEsteProductoEnElCarrito] = useState(0)
     
     const contrastarInventario = (cantidadActual)=> {
