@@ -1,10 +1,23 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo4 from '../img/Logo4.png'
 import CartWidget from './CartWidget'
+import {primeraLetraAMayusc} from '../utilidades/utilidades';
 import './NavBar.css'
 
-function NavBar({cantidadProductosEnCarrito}) {
+function NavBar() {
+  const [navLinks, setNavLinks] = useState([]);
+
+  useEffect(()=> {
+      fetch("nfts.json")
+      .then(res => res.json())
+      .then(productos => productos.map(producto => producto.category))
+      .then(arrayCategorias => setNavLinks([...new Set(arrayCategorias)]))
+    }, []
+  )
+
     return (
     <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -20,11 +33,16 @@ function NavBar({cantidadProductosEnCarrito}) {
                 Categorías
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to={"/categoria/harinas"}>Harinas</Link>
-                <Link to={"/categoria/carnes"}>Carnes</Link>
+                {navLinks.map(categoria => {
+                  return (
+                  <Link to={`/categoria/${categoria}`}>
+                    {primeraLetraAMayusc(categoria)}
+                  </Link>
+                  )}
+                )}
               </div>
             </div>
-            <CartWidget cantidadProductosEnCarrito={cantidadProductosEnCarrito}/>
+            <CartWidget />
           </div>
         </nav>
     </>
