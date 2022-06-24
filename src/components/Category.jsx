@@ -1,30 +1,27 @@
 import React from 'react'
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import ItemList from './ItemList';
 import {useParams} from 'react-router-dom';
 import {primeraLetraAMayusc} from '../utilidades/utilidades';
 import Loading from './Loading';
+import { ApiContext } from '../context/ApiContext';
 
 function Category({greeting}) {
-    const [arrayNfts, setArrayNfts] = useState([])
+    const { arrayProductos } = useContext(ApiContext)
     const { categoryName } = useParams()
+
+    const [arrayNftsFiltrados, setArrayNftsFiltrados] = useState()
 
     const [loading, setLoading] = useState(false)
 
   
     useEffect(() => {
       setLoading(true)
-      setTimeout(()=>{
-        fetch("../nfts.json")
-        .then(res => res.json())
-        //Utilizo el .filter para retornar sólo los obj que contienen la categoría igual a la pasada en categoryName
-        .then(json => setArrayNfts(json.filter(obj => {
-          return obj.category === categoryName}))
-          )
-        .catch(err => console.error("Error al importar nfts.json:", err))
-        .finally(setLoading(false))
-      }, 2000)
-    }, [categoryName])
+      setArrayNftsFiltrados(arrayProductos.filter(obj => {
+        return obj.category === categoryName
+      }))
+      setLoading(false)
+    }, [categoryName, arrayProductos])
 
     if(loading) {
       return (
@@ -39,8 +36,8 @@ function Category({greeting}) {
            {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
            <h2 className="categoryName">{primeraLetraAMayusc(categoryName)}</h2>
         </div>
-        {/* Hago el siguiente if puesto que hasta que se hace el fetch arrayNfts es un array vacío lo que genera un error en el mapeo que sucede dentro de ItemList*/}
-        {arrayNfts != [] ? <ItemList arrayNfts={arrayNfts} /> : <div className="noDisplay"></div>}
+        {/* Hago el siguiente if puesto que hasta que se hace el fetch arrayProductos es un array vacío lo que genera un error en el mapeo que sucede dentro de ItemList*/}
+        {arrayNftsFiltrados != [] ? <ItemList arrayProductos={arrayNftsFiltrados} /> : <div className="noDisplay"></div>}
         
       </>
       )

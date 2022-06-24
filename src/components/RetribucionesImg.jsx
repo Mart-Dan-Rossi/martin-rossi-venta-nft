@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { ApiContext } from '../context/ApiContext'
 import Loading from './Loading'
 import './RetribucionesImg.css'
 
 function RetribucionesImg() {
-    const [arrayNfts, setNfts] = useState([])
+    const { arrayProductos } = useContext(ApiContext)
 
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {    
       setLoading(true)
-        fetch("../nfts.json")
-            .then((res) => res.json())
-            .then((json) => setNfts(json))
-            .catch(err => console.error("Error al importar nfts.json:", err))
-            .finally(setLoading(false))
-    }, [])
+      if(arrayProductos.length > 0){
+        setLoading(false)
+      }
+  }, [arrayProductos])
 
     
   if(loading) {
@@ -31,7 +30,7 @@ function RetribucionesImg() {
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               <p>Quiero aclarar que esta es una página creada para practicar. No es mi intención real vender estas imágenes.</p>
-              {arrayNfts.map(nft => {
+              {arrayProductos.map(nft => {
                   if(nft.agradecimientoLink != ""){
                   return  <>
                             {/* Esta etiqueta <a> es para ir a un link externo a mi sitio */}

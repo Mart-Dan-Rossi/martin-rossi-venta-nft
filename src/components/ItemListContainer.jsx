@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ItemList from './ItemList'
 import {primeraLetraAMayusc} from '../utilidades/utilidades';
 import './ItemListContainer.css'
 import Loading from './Loading';
+import { ApiContext } from '../context/ApiContext';
 
 function ItemListContainer({greeting}) {
-  const [arrayNfts, setArrayNfts] = useState([])
+  const { arrayProductos } = useContext(ApiContext)
   const categoryName = "todos los NFTs"
 
   const [loading, setLoading] = useState(false)
@@ -13,14 +14,10 @@ function ItemListContainer({greeting}) {
   
   useEffect(() => {
     setLoading(true)
-    setTimeout(()=>{
-      fetch("nfts.json")
-        .then(res => res.json())
-        .then(json => setArrayNfts(json))
-        .catch(err => console.error("Error al importar nfts.json:", err))
-        .finally(setLoading(false))
-    }, 2000)
-  }, [])
+    if(arrayProductos.length > 0){
+      setLoading(false)
+    }
+  }, [arrayProductos])
 
 
   if(loading){
@@ -36,7 +33,7 @@ function ItemListContainer({greeting}) {
            {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
            <h2 className="categoryName">{primeraLetraAMayusc(categoryName)}</h2>
         </div>
-        <ItemList arrayNfts={arrayNfts} />
+        <ItemList arrayProductos={arrayProductos} />
       </>
     )
   }

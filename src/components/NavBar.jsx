@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import {useEffect, useState, useContext} from 'react';
 import { Link } from 'react-router-dom'
 import logo4 from '../img/Logo4.png'
 import { primeraLetraAMayusc } from '../utilidades/utilidades'
 import CartWidget from './CartWidget'
+import {ApiContext} from '../context/ApiContext';
 import './NavBar.css'
 
 function NavBar() {
   const [navLinks, setNavLinks] = useState([]);
+  const { arrayProductos } = useContext(ApiContext)
+
+  let arrayCategorias = []
 
   useEffect(()=> {
-      fetch("nfts.json")
-      .then(res => res.json())
-      .then(productos => productos.map(producto => producto.category))
-      .then(arrayCategorias => setNavLinks([...new Set(arrayCategorias)]))
-    }, []
+      arrayProductos.map(producto => arrayCategorias.push(producto.category))
+      setNavLinks([...new Set(arrayCategorias)])
+    }, [arrayProductos]
   )
 
     return (
