@@ -12,7 +12,7 @@ function ItemDetail({item}) {
       <>
       <div className="item-detail">
         <div className="item-header">
-          <h4 className="card-title">#{id}</h4>
+          <h4 className="card-title">{primeraLetraAMayusc(nombre)} <span className="subtitulo">#{id}</span></h4>
           {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
           <Link to={`/categoria/${category}`}>
             <h4 className="card-title">{primeraLetraAMayusc(category)}</h4>

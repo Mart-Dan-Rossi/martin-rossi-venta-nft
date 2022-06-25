@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import {primeraLetraAMayusc} from '../utilidades/utilidades';
 
 function Item({nft}) {
-  const {imgURL, nombre, existentes, stock, category} = nft
+  const {id,imgURL, nombre, existentes, stock, category} = nft
   return (
     <>
-    <Link to={`/producto/${nombre}`}>
+    <Link to={`/producto/${id}`}>
     <div className="card">
       <img src={"../"+imgURL} className="card-img-top" alt={nombre}/>
       <div className="card-body">

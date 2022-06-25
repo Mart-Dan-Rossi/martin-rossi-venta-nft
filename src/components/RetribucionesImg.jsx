@@ -4,16 +4,16 @@ import Loading from './Loading'
 import './RetribucionesImg.css'
 
 function RetribucionesImg() {
-    const { arrayProductos } = useContext(ApiContext)
+    // const { arrayProductos } = useContext(ApiContext)
 
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {    
-      setLoading(true)
-      if(arrayProductos.length > 0){
-        setLoading(false)
-      }
-  }, [arrayProductos])
+      // setLoading(true)
+      // if(arrayProductos.length > 0){
+      //   setLoading(false)
+      // }
+  }, [/*arrayProductos*/])
 
     
   if(loading) {
@@ -30,16 +30,16 @@ function RetribucionesImg() {
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               <p>Quiero aclarar que esta es una página creada para practicar. No es mi intención real vender estas imágenes.</p>
-              {arrayProductos.map(nft => {
+              {/* {arrayProductos.map(nft => {
                   if(nft.agradecimientoLink != ""){
-                  return  <>
+                  return  <> */}
                             {/* Esta etiqueta <a> es para ir a un link externo a mi sitio */}
-                            <a href={nft.agradecimientoLink} target="_blank">
+                            {/* <a href={nft.agradecimientoLink} target="_blank">
                               {nft.agradecimientoMensaje}
                             </a>
                           </>
                   }
-              })}          
+              })}           */}
           </div>
         </li>
       </div>

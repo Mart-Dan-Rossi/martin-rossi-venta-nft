@@ -1,23 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react'
-import ItemList from './ItemList'
-import {primeraLetraAMayusc} from '../utilidades/utilidades';
-import './ItemListContainer.css'
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { primeraLetraAMayusc } from '../utilidades/utilidades';
+import ItemList from './ItemList';
+import './ItemListContainer.css';
 import Loading from './Loading';
-import { ApiContext } from '../context/ApiContext';
 
 function ItemListContainer({greeting}) {
-  const { arrayProductos } = useContext(ApiContext)
   const categoryName = "todos los NFTs"
 
   const [loading, setLoading] = useState(false)
+  const [arrayProductos, setArrayProductos] = useState([])
 
   
   useEffect(() => {
+    const coleccionProductos = collection(getFirestore(), "items")
+
     setLoading(true)
-    if(arrayProductos.length > 0){
-      setLoading(false)
-    }
-  }, [arrayProductos])
+    getDocs(coleccionProductos)
+    .then((res)=> {
+      setArrayProductos(res.docs.map((doc)=> ({id: doc.id, ...doc.data()})))
+    })
+    .finally(setLoading(false))
+  }, [])
 
 
   if(loading){

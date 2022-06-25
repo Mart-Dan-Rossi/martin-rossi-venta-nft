@@ -1,27 +1,38 @@
-import React from 'react'
-import {useEffect, useState, useContext} from 'react';
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { primeraLetraAMayusc } from '../utilidades/utilidades';
 import ItemList from './ItemList';
-import {useParams} from 'react-router-dom';
-import {primeraLetraAMayusc} from '../utilidades/utilidades';
 import Loading from './Loading';
-import { ApiContext } from '../context/ApiContext';
 
 function Category({greeting}) {
-    const { arrayProductos } = useContext(ApiContext)
     const { categoryName } = useParams()
-
+    
     const [arrayNftsFiltrados, setArrayNftsFiltrados] = useState()
-
+    
     const [loading, setLoading] = useState(false)
-
-  
+    
+    
     useEffect(() => {
       setLoading(true)
-      setArrayNftsFiltrados(arrayProductos.filter(obj => {
-        return obj.category === categoryName
-      }))
-      setLoading(false)
-    }, [categoryName, arrayProductos])
+      const arrayProductos = collection(getFirestore(), "items")
+      const q = query(arrayProductos, where("category", "==", categoryName))
+
+      getDocs(q)
+      .then((res)=>{
+        setArrayNftsFiltrados(
+          [...new Set(res.docs.map((producto) => (
+            //Por cada producto creo un objeto dentro del array que contenga las propiedades de los productos agregando el id que viene por separado
+              {
+                id: producto.id,
+                ...producto.data()
+              }
+            ))
+          )]
+        )
+      })
+      .finally(setLoading(false))
+    }, [categoryName, arrayNftsFiltrados])
 
     if(loading) {
       return (

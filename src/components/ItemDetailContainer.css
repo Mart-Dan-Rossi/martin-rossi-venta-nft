@@ -22,6 +22,18 @@
     justify-content: space-between;
 }
 
+.card-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.card-title .subtitulo {
+    font-size: medium;
+    font-weight: 400;
+}
+
 .item-detail-body {
     flex: 1 1 auto;
     min-height: 1px;

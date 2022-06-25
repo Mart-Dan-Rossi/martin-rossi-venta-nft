@@ -1,21 +1,12 @@
-import {useEffect, useState, useContext} from 'react';
-import { useParams } from 'react-router-dom'
-import ItemDetail from './ItemDetail'
-import './ItemDetailContainer.css'
-import Loading from './Loading'
-import {ApiContext} from '../context/ApiContext';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import ItemDetail from './ItemDetail';
+import './ItemDetailContainer.css';
+import Loading from './Loading';
 
-const getItem = (arrayProductos, setFunction, nombreAFiltrar, setLoading)=> {    
-    setFunction(arrayProductos.find(nft => {
-        return nft.nombre === nombreAFiltrar})
-        )
-    if(arrayProductos.length > 0) {
-        setLoading(false)
-    }
-}
     
 function ItemDetailContainer() {
-    const { arrayProductos } = useContext(ApiContext)
     const [item, setItem] = useState({})
     const { nombre } = useParams()
 
@@ -24,8 +15,21 @@ function ItemDetailContainer() {
 
     useEffect(() => {
         setLoading(true)
-        getItem(arrayProductos, setItem, nombre, setLoading)
-      }, [arrayProductos])
+        let producto = doc(getFirestore(), "items", nombre)
+        getDoc(producto)        
+        .then(doc => {
+            setItem({id: doc.id, ...doc.data()})
+        })
+        .finally(setLoading(false))
+
+        // setItem(arrayProductos.find(nft => {
+        //     return nft.nombre === nombre})
+        //     )
+        // if(arrayProductos.length > 0) {
+        //     setLoading(false)
+        // }
+      }, [])
+      
 
       if(loading) {
         return (
@@ -34,6 +38,7 @@ function ItemDetailContainer() {
       } else {
           return (
             <div className='item-detail-container'>
+                {/* {console.log(item)} */}
                 <ItemDetail item={item}/>
             </div>
           )

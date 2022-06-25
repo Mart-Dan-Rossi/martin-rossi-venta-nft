@@ -1,21 +1,24 @@
-import {useEffect, useState, useContext} from 'react';
-import { Link } from 'react-router-dom'
-import logo4 from '../img/Logo4.png'
-import { primeraLetraAMayusc } from '../utilidades/utilidades'
-import CartWidget from './CartWidget'
-import {ApiContext} from '../context/ApiContext';
-import './NavBar.css'
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import logo4 from '../img/Logo4.png';
+import { primeraLetraAMayusc } from '../utilidades/utilidades';
+import CartWidget from './CartWidget';
+import './NavBar.css';
 
 function NavBar() {
   const [navLinks, setNavLinks] = useState([]);
-  const { arrayProductos } = useContext(ApiContext)
 
-  let arrayCategorias = []
-
+  
+  
   useEffect(()=> {
-      arrayProductos.map(producto => arrayCategorias.push(producto.category))
-      setNavLinks([...new Set(arrayCategorias)])
-    }, [arrayProductos]
+    const arrayProductos = collection(getFirestore(), "items")
+
+    getDocs(arrayProductos)
+    .then((res)=> {
+      setNavLinks([...new Set(res.docs.map(producto=> producto.data().category))])
+    })
+    }, []
   )
 
     return (
