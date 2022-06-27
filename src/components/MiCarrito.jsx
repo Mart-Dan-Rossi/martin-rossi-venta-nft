@@ -55,8 +55,12 @@ export default function MiCarrito({}) {
                                           className="img-fluid rounded-3 imágen-nft" alt="Shopping item"/>
                                       </div>
                                       <div className="ms-3">
-                                        <h5>{nombreDisplayeable}</h5>
-                                        <p className="small mb-0">{categoriaDisplayeable}</p>
+                                        <Link to={`/producto/${id}`}>
+                                          <h5>{nombreDisplayeable}</h5>
+                                        </Link>
+                                        <Link to={`/categoria/${category}`}>
+                                          <p className="small mb-0">{categoriaDisplayeable}</p>
+                                        </Link>
                                       </div>
                                     </div>
                                     <div className="d-flex flex-row align-items-center">
