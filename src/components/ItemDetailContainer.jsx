@@ -24,17 +24,17 @@ function ItemDetailContainer() {
       }, [])
       
 
-      if(loading) {
+    if(loading) {
+      return (
+          <Loading />
+      )
+    } else {
         return (
-            <Loading />
+          <div className='item-detail-container'>
+              <ItemDetail item={item}/>
+          </div>
         )
-      } else {
-          return (
-            <div className='item-detail-container'>
-                <ItemDetail item={item}/>
-            </div>
-          )
-      }
+    }
 }
 
 export default ItemDetailContainer
