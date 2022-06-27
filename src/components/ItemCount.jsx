@@ -1,20 +1,19 @@
-import React, { useState, useContext } from 'react'
-import './ItemCount.css'
-import iconoSuma from '../img/icon-suma.svg'
-import iconoResta from '../img/icon-resta.svg'
+import { useContext, useState } from 'react'
 import { CartContext } from '../context/CartContext'
+import iconoResta from '../img/icon-resta.svg'
+import iconoSuma from '../img/icon-suma.svg'
+import './ItemCount.css'
 
 function ItemCount({inicial, item, onAdd}) {
     const {nombre, stock, precio} = item
     const [cantidadSeleccioable, setCantidadSeleccioable] = useState(inicial)
-    const {cantidadProductosEnCarrito, setCantidadCarrito} = useContext(CartContext)
-    const [cantidadEsteProductoEnElCarrito, setCantidadEsteProductoEnElCarrito] = useState(0)
+    const {cantidadEsteProductoEnCarrito} = useContext(CartContext)
     
-    const contrastarInventario = (cantidadActual)=> {
+    const contrastarInventario = (cantidadSeleccionableActual)=> {
         const seccionEsteProducto = document.getElementById(`${nombre}`)
         const indicadorCantidadDisponible = seccionEsteProducto.querySelector(".cantidad-disponible")
         const indicadorCantidadEnCarrito = seccionEsteProducto.querySelector(".cantidad-en-carrito")
-        if (cantidadActual <= stock && cantidadActual + cantidadEsteProductoEnElCarrito <= stock) {
+        if (cantidadSeleccionableActual <= stock && cantidadSeleccionableActual + cantidadEsteProductoEnCarrito(nombre) <= stock) {
             indicadorCantidadDisponible.classList.remove("resaltar-con-rojo")
             indicadorCantidadEnCarrito.classList.remove("resaltar-con-rojo");
         } else {
@@ -32,7 +31,7 @@ function ItemCount({inicial, item, onAdd}) {
 
     const clickBotonSumar = ()=> {
         contrastarInventario(cantidadSeleccioable + 1)
-        if (cantidadSeleccioable + cantidadEsteProductoEnElCarrito < stock) {
+        if (cantidadSeleccioable + cantidadEsteProductoEnCarrito(nombre) < stock) {
             setCantidadSeleccioable(cantidadSeleccioable + 1)
         }
     }
@@ -42,20 +41,18 @@ function ItemCount({inicial, item, onAdd}) {
         const indicadorCantidadDisponible = seccionEsteProducto.querySelector(".cantidad-disponible")
         const indicadorCantidadEnCarrito = seccionEsteProducto.querySelector(".cantidad-en-carrito")
         event.preventDefault()
-        if (0 < cantidadSeleccioable && (cantidadEsteProductoEnElCarrito + cantidadSeleccioable) <= stock){
-            setCantidadEsteProductoEnElCarrito(cantidadEsteProductoEnElCarrito + cantidadSeleccioable)
-            setCantidadCarrito(cantidadProductosEnCarrito + cantidadSeleccioable)
-        }
-        if (cantidadEsteProductoEnElCarrito + cantidadSeleccioable >= stock) {
+        if (cantidadEsteProductoEnCarrito(nombre) + cantidadSeleccioable >= stock) {
             setCantidadSeleccioable(0)
             indicadorCantidadDisponible.classList.add("resaltar-con-rojo");
             indicadorCantidadEnCarrito.classList.add("resaltar-con-rojo");
-        } else if (cantidadEsteProductoEnElCarrito + cantidadSeleccioable < stock) {
+        } else if (cantidadEsteProductoEnCarrito(nombre) + cantidadSeleccioable < stock) {
             setCantidadSeleccioable(1)
             indicadorCantidadDisponible.classList.remove("resaltar-con-rojo");
             indicadorCantidadEnCarrito.classList.remove("resaltar-con-rojo");
         }
-        onAdd(false)
+        if (0 < cantidadSeleccioable && (cantidadEsteProductoEnCarrito(nombre) + cantidadSeleccioable) <= stock){
+            onAdd(cantidadSeleccioable)
+        }
     }
 
     return (
@@ -64,7 +61,7 @@ function ItemCount({inicial, item, onAdd}) {
             <div id={nombre} className="contenedor-parte-principal">
                 <div className="contenedor-control-inventario">
                     <span className='cantidad-disponible'>Disponibles: {stock}</span>
-                    <span className="cantidad-en-carrito">En carrito: {cantidadEsteProductoEnElCarrito}</span>
+                    <span className="cantidad-en-carrito">En carrito: {cantidadEsteProductoEnCarrito()}</span>
                 </div>
                 <div className="contenedor-selector-numerico">
                     <img className='boton-restar' src={iconoResta} alt="Botón restar" 

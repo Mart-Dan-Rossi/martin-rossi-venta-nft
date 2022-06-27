@@ -5,6 +5,7 @@ li {
 a {
     text-decoration: none;
     color: black;
+    max-width: max-content;
 }
 
 .nav-link {

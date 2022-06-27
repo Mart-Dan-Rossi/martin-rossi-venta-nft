@@ -11,6 +11,8 @@ function ItemListContainer({greeting}) {
   const [loading, setLoading] = useState(false)
   const [arrayProductos, setArrayProductos] = useState([])
 
+  let categoryDisplayeable = primeraLetraAMayusc(categoryName)
+
   
   useEffect(() => {
     const coleccionProductos = collection(getFirestore(), "items")
@@ -35,7 +37,7 @@ function ItemListContainer({greeting}) {
             <p>{greeting}</p>
            <h1>Martín NFT</h1>
            {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
-           <h2 className="categoryName">{primeraLetraAMayusc(categoryName)}</h2>
+           <h2 className="categoryName">{categoryDisplayeable}</h2>
         </div>
         <ItemList arrayProductos={arrayProductos} />
       </>

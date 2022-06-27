@@ -36,9 +36,9 @@ function NavBar() {
                 Categorías
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">                
-                {navLinks.map(categoria => {
+                {navLinks.map((categoria, index) => {
                   return (
-                  <Link to={`/categoria/${categoria}`}>
+                  <Link key={index} to={`/categoria/${categoria}`}>
                     {primeraLetraAMayusc(categoria)}
                   </Link>
                   )}

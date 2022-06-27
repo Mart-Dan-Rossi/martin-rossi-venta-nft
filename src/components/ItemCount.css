@@ -45,6 +45,7 @@ form > div {
 .contenedor-selector-numerico img {
     width: 20px;
     position: absolute;
+    cursor: pointer;
 }
 
 .boton-restar {

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ApiContext } from '../context/ApiContext'
+// import { ApiContext } from '../context/ApiContext'
 import Loading from './Loading'
 import './RetribucionesImg.css'
 

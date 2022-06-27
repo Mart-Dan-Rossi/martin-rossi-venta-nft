@@ -12,7 +12,6 @@ import MyProvider from './context/CartContext';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import ProvedorProductos from './context/ApiContext';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -42,7 +41,7 @@ export default function App() {
         <Route path='/' element={<ItemListContainer greeting={mensajeBienvenida}/>} />
         <Route path='/home' element={<ItemListContainer greeting={mensajeBienvenida}/>} />
         {/* Paso el estado cantidadProductosEnCarrito para que se pueda utilizar el dato dentro del componente y también paso la función con la que se puede modificar para que pueda ser modificable dentro del mismo*/}
-        <Route path='/producto/:nombre' element={<ItemDetailContainer/>} />
+        <Route path='/producto/:idProducto' element={<ItemDetailContainer/>} />
         <Route path='/categoria/:categoryName' element={<Category greeting={mensajeBienvenida} />} />
         <Route path='/claseEventos' element={<ClaseEventos />} />
         <Route path='/miCarrito' element={<MiCarrito />} />

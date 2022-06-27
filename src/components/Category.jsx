@@ -11,6 +11,8 @@ function Category({greeting}) {
     const [arrayNftsFiltrados, setArrayNftsFiltrados] = useState()
     
     const [loading, setLoading] = useState(false)
+
+    let categoryNameDisplayable = primeraLetraAMayusc(categoryName)
     
     
     useEffect(() => {
@@ -45,7 +47,7 @@ function Category({greeting}) {
             <p>{greeting}</p>
            <h1>Martín NFT</h1>
            {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
-           <h2 className="categoryName">{primeraLetraAMayusc(categoryName)}</h2>
+           <h2 className="categoryName">{categoryNameDisplayable}</h2>
         </div>
         {/* Hago el siguiente if puesto que hasta que se hace el fetch arrayProductos es un array vacío lo que genera un error en el mapeo que sucede dentro de ItemList*/}
         {arrayNftsFiltrados != [] ? <ItemList arrayProductos={arrayNftsFiltrados} /> : <div className="noDisplay"></div>}

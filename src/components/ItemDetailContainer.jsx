@@ -8,26 +8,19 @@ import Loading from './Loading';
     
 function ItemDetailContainer() {
     const [item, setItem] = useState({})
-    const { nombre } = useParams()
+    const { idProducto } = useParams()
 
     const [loading, setLoading] = useState(false)
 
 
     useEffect(() => {
         setLoading(true)
-        let producto = doc(getFirestore(), "items", nombre)
+        let producto = doc(getFirestore(), "items", idProducto)
         getDoc(producto)        
         .then(doc => {
             setItem({id: doc.id, ...doc.data()})
         })
         .finally(setLoading(false))
-
-        // setItem(arrayProductos.find(nft => {
-        //     return nft.nombre === nombre})
-        //     )
-        // if(arrayProductos.length > 0) {
-        //     setLoading(false)
-        // }
       }, [])
       
 
@@ -38,7 +31,6 @@ function ItemDetailContainer() {
       } else {
           return (
             <div className='item-detail-container'>
-                {/* {console.log(item)} */}
                 <ItemDetail item={item}/>
             </div>
           )

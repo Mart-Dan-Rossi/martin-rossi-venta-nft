@@ -4,19 +4,23 @@ import {primeraLetraAMayusc} from '../utilidades/utilidades';
 
 function Item({nft}) {
   const {id,imgURL, nombre, existentes, stock, category} = nft
+
+  let nombreDisplayeable = primeraLetraAMayusc(nombre)
+
+  let categoryDisplayeable = primeraLetraAMayusc(category)
   return (
     <>
     <Link to={`/producto/${id}`}>
-    <div className="card">
-      <img src={"../"+imgURL} className="card-img-top" alt={nombre}/>
-      <div className="card-body">
-     {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
-        <h5 className="card-title">{primeraLetraAMayusc(nombre)}</h5>
-        <h5 className="card-title">{primeraLetraAMayusc(category)}</h5>
-        <p className='card-text'>En stock: {stock}/{existentes}</p>
-        <p className="btn btn-primary">Detalles</p>
+      <div className="card">
+        <img src={"../"+imgURL} className="card-img-top" alt={nombre}/>
+        <div className="card-body">
+       {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
+          <h5 className="card-title">{nombreDisplayeable}</h5>
+          <h5 className="card-title">{categoryDisplayeable}</h5>
+          <p className='card-text'>En stock: {stock}/{existentes}</p>
+          <p className="btn btn-primary">Detalles</p>
+        </div>
       </div>
-    </div>
     </Link>
     </>
   )

@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createContext } from "react";
 
 export const CartContext = createContext()
 
-const {Provider} = CartContext;
+const { Provider } = CartContext;
 
-const MyProvider = ({children}) => {
-    const [cart, setCart] = useState([])    
-    const [cantidadProductosEnCarrito, setCantidadCarrito] = useState(0)
+const MyProvider = ({ children }) => {
+    const [cart, setCart] = useState([])
 
     const isInCart = (id)=> {
         //Método Some es un método de array que devuelve un boolean
@@ -29,34 +28,45 @@ const MyProvider = ({children}) => {
             //Copio el estado cart para poder modificarlo
             const arrayProductosAux = [...cart]
 
-            //Modifico el estado para que agregue la cantidad indicada
+            //Modifico la cantidad de ESE item
             arrayProductosAux[indexProducto].cantidadEnElCarrito += cantidadEnElCarrito
-            //Guardo las modificaciones del estado
+            
+            //Actualizo el estado cart con la cantidad actualizada del producto
             setCart(arrayProductosAux)
         } else {
             //Si no estaba en el carrito agrego el nuevo item al cart reteniendo la info previa
-            setCart([...cart], newItem)
+            setCart([...cart], newItem)           
         }
     }
 
     const vaciarCarrito = ()=> {
-        setCart([])
+        return setCart([])
     }
 
     const borrarItem = (id)=> {
         return setCart(cart.filter(producto => producto.id != id))
     }
 
-    const cantidadEsteProductoEnCarrito = ()=> {
-        return cart ? cart.reduce((acc, producto)=> acc += producto.cantidadEnElCarrito, 0) : 0
+    const cantidadProductosEnCarrito = ()=> {
+        return cart != [] ? cart.reduce((acc, producto)=> acc += producto.cantidadEnElCarrito, 0) : 0
     }
 
-    const obtenerPrecioPorTipoDeProducto = ()=> {
+    const cantidadEsteProductoEnCarrito = (nombreProducto)=> {
+        let esteProducto = cart.find(nft => {return nft.nombre === nombreProducto})
+        return esteProducto ? esteProducto.cantidadEnElCarrito : 0
+    }
+    
+    const obtenerPrecioTotal = ()=> {
         return cart.reduce((acc, producto)=> acc += producto.cantidadEnElCarrito * producto.precio, 0)
     }
 
+    const obtenerPrecioPorEsteProducto = (nombreProducto)=> {
+        let esteProducto = cart.find(nft => {return nft.nombre === nombreProducto})
+        return esteProducto.precio * esteProducto.cantidadEnElCarrito
+    }
 
-    return <Provider value={{cart, cantidadProductosEnCarrito, setCantidadCarrito, isInCart, agregarItem, vaciarCarrito, borrarItem, cantidadEsteProductoEnCarrito, obtenerPrecioPorTipoDeProducto}}>{children}</Provider>
+
+    return <Provider value={{ cart, isInCart, agregarItem, vaciarCarrito, borrarItem, cantidadProductosEnCarrito, cantidadEsteProductoEnCarrito, obtenerPrecioTotal, obtenerPrecioPorEsteProducto }}>{ children }</Provider>
 }
 
 export default MyProvider
