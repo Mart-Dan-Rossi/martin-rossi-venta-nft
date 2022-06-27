@@ -35,7 +35,7 @@ const MyProvider = ({ children }) => {
             setCart(arrayProductosAux)
         } else {
             //Si no estaba en el carrito agrego el nuevo item al cart reteniendo la info previa
-            setCart([...cart], newItem)           
+            setCart([...cart, newItem])
         }
     }
 

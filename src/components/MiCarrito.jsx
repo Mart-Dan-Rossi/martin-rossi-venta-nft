@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
+import {primeraLetraAMayusc} from '../utilidades/utilidades';
 import './MiCarrito.css'
 
 export default function MiCarrito({}) {
@@ -39,7 +40,10 @@ export default function MiCarrito({}) {
 
                       {
                         cart.map((producto, index)=> {
-                          const {nombre, category, cantidadEnElCarrito, id} = producto
+                          const {nombre, category, cantidadEnElCarrito, id, imgURL} = producto
+
+                          let nombreDisplayeable = primeraLetraAMayusc(nombre)
+                          let categoriaDisplayeable = primeraLetraAMayusc(category)
                             return (
                               <div key={index} className="card mb-3">
                                 <div className="card-body">
@@ -47,20 +51,20 @@ export default function MiCarrito({}) {
                                     <div className="d-flex flex-row align-items-center">
                                       <div>
                                         <img
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                                          src={imgURL}
                                           className="img-fluid rounded-3 imágen-nft" alt="Shopping item"/>
                                       </div>
                                       <div className="ms-3">
-                                        <h5>{nombre}</h5>
-                                        <p className="small mb-0">{category}</p>
+                                        <h5>{nombreDisplayeable}</h5>
+                                        <p className="small mb-0">{categoriaDisplayeable}</p>
                                       </div>
                                     </div>
                                     <div className="d-flex flex-row align-items-center">
                                       <div className='contenedor-cantidad-este-producto'>
-                                        <h5 className="fw-normal mb-0">{cantidadEnElCarrito}</h5>
+                                        <h5 className="fw-normal mb-0">x{cantidadEnElCarrito}</h5>
                                       </div>
                                       <div className='contenedor-precio-este-producto'>
-                                        <h5 className="mb-0">{obtenerPrecioPorEsteProducto(nombre)}</h5>
+                                        <h5 className="mb-0">${obtenerPrecioPorEsteProducto(nombre)}</h5>
                                       </div>
                                       <button type="button" className="btn btn-secondary" onClick={()=>{ borrarItem(id) }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -92,10 +96,11 @@ export default function MiCarrito({}) {
                             {
                               cart.map((producto, index)=> {
                                 const {nombre, cantidadEnElCarrito} = producto
+                                let nombreDisplayeable = primeraLetraAMayusc(nombre)
                                 return (
                                   <div key={index} className="d-flex justify-content-between mb-4">
-                                    <p className="mb-2">Precio {nombre} x{cantidadEnElCarrito}</p>
-                                    <p className="mb-2">{obtenerPrecioPorEsteProducto(nombre)}</p>
+                                    <p className="mb-2">Precio {nombreDisplayeable} x{cantidadEnElCarrito}</p>
+                                    <p className="mb-2">${obtenerPrecioPorEsteProducto(nombre)}</p>
                                   </div>
                                   )
                               })
@@ -106,7 +111,7 @@ export default function MiCarrito({}) {
                           
                             <div className="d-flex justify-content-between mb-4">
                               <p className="mb-2">Total</p>
-                              <p className="mb-2">{obtenerPrecioTotal()}</p>
+                              <p className="mb-2">${obtenerPrecioTotal()}</p>
                             </div>
                           
                              <button type="button" className="btn btn-info btn-block btn-lg">
