@@ -1,6 +1,8 @@
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 import logo4 from '../img/Logo4.png';
 import { primeraLetraAMayusc } from '../utilidades/utilidades';
 import CartWidget from './CartWidget';
@@ -8,6 +10,7 @@ import './NavBar.css';
 
 function NavBar() {
   const [navLinks, setNavLinks] = useState([]);
+  const {cart} = useContext(CartContext)
 
   
   
@@ -45,7 +48,7 @@ function NavBar() {
                 )}
               </div>
             </div>
-            <CartWidget />
+            {cart.length > 0 && <CartWidget />}
           </div>
         </nav>
     </>
