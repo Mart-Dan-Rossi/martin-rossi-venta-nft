@@ -40,7 +40,7 @@ export default function MiCarrito({}) {
 
                       {
                         cart.map((producto, index)=> {
-                          const {nombre, category, cantidadEnElCarrito, id, imgURL} = producto
+                          const { nombre, category, cantidadEnElCarrito, id, imgURL } = producto
 
                           let nombreDisplayeable = primeraLetraAMayusc(nombre)
                           let categoriaDisplayeable = primeraLetraAMayusc(category)
@@ -118,13 +118,14 @@ export default function MiCarrito({}) {
                               <p className="mb-2">${obtenerPrecioTotal()}</p>
                             </div>
                           
-                             <button type="button" className="btn btn-info btn-block btn-lg">
-                               <div className="d-flex justify-content-between">
-                                 <span>${obtenerPrecioTotal()}</span>
-                                 <span>Comprar</span>
-                               </div>
-                             </button>
-                          
+                            <Link to={"/checkout"}>
+                              <button type="button" className="btn btn-info btn-block btn-lg">
+                                <div className="d-flex justify-content-between">
+                                  <span>${obtenerPrecioTotal()}</span>
+                                  <span>Finalizar compra</span>
+                                </div>
+                              </button>
+                            </Link>
                           </div>
                         </div>
                       </div>

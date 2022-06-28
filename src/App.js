@@ -12,6 +12,7 @@ import MyProvider from './context/CartContext';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import Checkout from './components/Checkout';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -45,6 +46,7 @@ export default function App() {
         <Route path='/categoria/:categoryName' element={<Category greeting={mensajeBienvenida} />} />
         <Route path='/claseEventos' element={<ClaseEventos />} />
         <Route path='/miCarrito' element={<MiCarrito />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
         <RetribucionesImg />
       </BrowserRouter>
