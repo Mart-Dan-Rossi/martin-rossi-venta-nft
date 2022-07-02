@@ -16,6 +16,11 @@ a {
     display: block;
 }
 
-.dropdown-menu {
+.mi-dropdown {
     transform: translateY(37px) !important;
+    margin: 10px !important;
+}
+
+.mi-dropdown > * {
+    margin: 5px;
 }

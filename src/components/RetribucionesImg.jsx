@@ -29,7 +29,7 @@ function RetribucionesImg() {
           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
             Links agradecimientos
           </a>
-          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div className="dropdown-menu mi-dropdown" aria-labelledby="navbarDropdown">
               <p>Quiero aclarar que esta es una página creada para practicar. No es mi intención real vender estas imágenes.</p>
               {arrayProductos.map(nft => {
                   if(nft.agradecimientoLink != ""){
