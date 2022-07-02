@@ -9,14 +9,11 @@ function Category({greeting}) {
     const { categoryName } = useParams()
     
     const [arrayNftsFiltrados, setArrayNftsFiltrados] = useState()
-    
-    const [loading, setLoading] = useState(false)
 
     let categoryNameDisplayable = primeraLetraAMayusc(categoryName)
     
     
     useEffect(() => {
-      setLoading(true)
       const arrayProductos = collection(getFirestore(), "items")
       const q = query(arrayProductos, where("category", "==", categoryName))
 
@@ -33,25 +30,25 @@ function Category({greeting}) {
           )]
         )
       })
-      .finally(setLoading(false))
-    }, [categoryName, arrayNftsFiltrados])
+    }, [arrayNftsFiltrados, categoryName])
 
-    if(loading) {
+    if(arrayNftsFiltrados == undefined) {
       return (
-        <Loading />
+        <div className="loading-container">
+          <Loading />
+        </div>
       )
     } else {      
       return (
-      <>
-        <div className='contenedor-encabezado'>
-            <p>{greeting}</p>
-           <h1>Martín NFT</h1>           
-           <h2 className="categoryName">{categoryNameDisplayable}</h2>
+        <div>
+          <div className='contenedor-encabezado'>
+              <p>{greeting}</p>
+             <h1>Martín NFT</h1>           
+             <h2 className="categoryName">{categoryNameDisplayable}</h2>
+          </div>
+          {/* Hago el siguiente if puesto que hasta que se hace el fetch arrayProductos es un array vacío lo que genera un error en el mapeo que sucede dentro de ItemList*/}
+          {arrayNftsFiltrados !== [] && <ItemList arrayProductos={arrayNftsFiltrados} />}          
         </div>
-        {/* Hago el siguiente if puesto que hasta que se hace el fetch arrayProductos es un array vacío lo que genera un error en el mapeo que sucede dentro de ItemList*/}
-        {arrayNftsFiltrados !== [] ? <ItemList arrayProductos={arrayNftsFiltrados} /> : <div className="no-display"></div>}
-        
-      </>
       )
     }
   }

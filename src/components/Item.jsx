@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import {primeraLetraAMayusc} from '../utilidades/utilidades';
 import {doc, getDoc, getFirestore} from 'firebase/firestore';
 import { useState } from 'react';
-import Loading from './Loading';
 
 function Item({nft}) {
   const {id} = nft

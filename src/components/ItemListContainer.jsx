@@ -34,7 +34,6 @@ function ItemListContainer({greeting}) {
         <div className='contenedor-encabezado'>
             <p>{greeting}</p>
            <h1>Martín NFT</h1>
-           {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
            <h2 className="categoryName">{categoryDisplayeable}</h2>
         </div>
         <ItemList arrayProductos={arrayProductos} />

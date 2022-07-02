@@ -45,8 +45,8 @@ export default function MiCarrito({}) {
                           let nombreDisplayeable = primeraLetraAMayusc(nombre)
                           let categoriaDisplayeable = primeraLetraAMayusc(category)
                             return (
-                              <div>
-                                <div key={index} className="card mb-3">
+                              <div key={index}>
+                                <div className="card mb-3">
                                   <div className="card-body">
                                     <div className="d-flex justify-content-between">
                                       <div className="d-flex flex-row align-items-center">

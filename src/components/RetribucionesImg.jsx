@@ -15,7 +15,7 @@ function RetribucionesImg() {
     }, [])
 
     
-  if(arrayProductos==0){
+  if(arrayProductos==[]){
     return (
       <div className="loading-container">
         <Loading />
@@ -33,12 +33,12 @@ function RetribucionesImg() {
               <p>Quiero aclarar que esta es una página creada para practicar. No es mi intención real vender estas imágenes.</p>
               {arrayProductos.map(nft => {
                   if(nft.agradecimientoLink != ""){
-                  return  <>
+                  return  <div key={nft.id}>
                             {/* Esta etiqueta <a> es para ir a un link externo a mi sitio */}
                             <a href={nft.agradecimientoLink} target="_blank">
                               {nft.agradecimientoMensaje}
                             </a>
-                          </>
+                          </div>
                   }
               })}          
           </div>

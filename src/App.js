@@ -2,7 +2,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Category from './components/Category';
-import ClaseEventos from './components/ClaseEventos';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import ItemListContainer from './components/ItemListContainer';
 import MiCarrito from './components/MiCarrito';
@@ -43,7 +42,6 @@ export default function App() {
         <Route path='/home' element={<ItemListContainer greeting={mensajeBienvenida}/>} />
         <Route path='/producto/:idProducto' element={<ItemDetailContainer/>} />
         <Route path='/categoria/:categoryName' element={<Category greeting={mensajeBienvenida} />} />
-        <Route path='/claseEventos' element={<ClaseEventos />} />
         <Route path='/miCarrito' element={<MiCarrito />} />
         <Route path='/checkout' element={<Checkout />} />
       </Routes>
