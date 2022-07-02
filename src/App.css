@@ -1,3 +1,22 @@
-.noDisplay {
+.no-display {
     display: none;
+}
+
+.btn {
+    box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 75%);
+}
+
+.sombra-contenedor {
+    box-shadow: 0px 0px 11px 8px rgb(100 100 255 / 24%);
+}
+
+.loading-container {
+    position: relative;
+    display: flex;
+    height: 655px;
+    width: 100vw;
+
+    align-items: center;
+    align-content: center;
+    justify-content: center;
 }

@@ -10,23 +10,20 @@ function ItemDetailContainer() {
     const [item, setItem] = useState({})
     const { idProducto } = useParams()
 
-    const [loading, setLoading] = useState(false)
-
-
     useEffect(() => {
-        setLoading(true)
         let producto = doc(getFirestore(), "items", idProducto)
         getDoc(producto)        
         .then(doc => {
             setItem({id: doc.id, ...doc.data()})
         })
-        .finally(setLoading(false))
       }, [])
       
 
-    if(loading) {
+    if(item.id === undefined) {
       return (
+        <div className="loading-container">
           <Loading />
+        </div>
       )
     } else {
         return (

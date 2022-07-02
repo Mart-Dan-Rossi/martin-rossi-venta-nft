@@ -8,7 +8,6 @@ import Loading from './Loading';
 function ItemListContainer({greeting}) {
   const categoryName = "todos los NFTs"
 
-  const [loading, setLoading] = useState(false)
   const [arrayProductos, setArrayProductos] = useState([])
 
   let categoryDisplayeable = primeraLetraAMayusc(categoryName)
@@ -17,18 +16,17 @@ function ItemListContainer({greeting}) {
   useEffect(() => {
     const coleccionProductos = collection(getFirestore(), "items")
 
-    setLoading(true)
     getDocs(coleccionProductos)
     .then((res)=> {
       setArrayProductos(res.docs.map((doc)=> ({id: doc.id, ...doc.data()})))
-    })
-    .finally(setLoading(false))
+    })      
   }, [])
 
-
-  if(loading){
+  if(arrayProductos==0){
     return (
-      <Loading />
+      <div className="loading-container">
+        <Loading />
+      </div>
     )
   } else {
     return (

@@ -23,3 +23,7 @@
 .bg-negro {
     background-color: black;
 }
+
+.boton-finalizar-compra:hover {
+    text-decoration: none;
+}

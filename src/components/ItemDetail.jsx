@@ -33,9 +33,16 @@ function ItemDetail({item}) {
           <p className="card-text lore">{lore}</p>
         </div>
         {mostrarItemCount ? 
-           <ItemCount key={id} inicial={stock > 0 ? 1 : 0} item={item} setMostrarItemCount={setMostrarItemCount} onAdd={onAdd}/>
+           <ItemCount key={id} inicial={stock > 0 ? 1 : 0} item={item} onAdd={onAdd}/>
            : 
-           <Link to="/miCarrito" className='btn btn-primary'>Ir al carrito</Link>
+            <div className="contenedor-navegacion-item-detail d-flex justify-content-center w-100">
+              <div className="col-3 justify-content-center d-flex">
+                <Link to={"/"} className='btn btn-primary'>Seguir comprando</Link>
+              </div>
+              <div className="col-3 justify-content-center d-flex">
+                <Link to="/miCarrito" className='btn btn-primary'>Ir al carrito</Link>
+              </div>
+            </div>
         }        
       </div>
       </>

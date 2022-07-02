@@ -3,12 +3,13 @@
     flex-direction: column;
     justify-content: center;
 
-    max-width: 90rem;
+    max-width: 30rem;
     width: 90%;
     margin: 10px auto;
     border: 10px solid var(--secondary);
     border-radius: 8px;
     background-color: lightgray;
+    box-shadow: 4px 4px 7px 3px rgb(0 0 0 / 75%);
 }
 
 .item-detail > * {
@@ -18,7 +19,7 @@
 .item-header {
     display: flex;
     width: 90%;
-    padding: 12px 10px 10px 10px;
+    padding: 12px 10px 0 10px;
     justify-content: space-between;
 }
 

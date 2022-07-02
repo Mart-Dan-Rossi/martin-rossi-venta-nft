@@ -15,3 +15,7 @@ a {
 .dropdown-menu a {
     display: block;
 }
+
+.dropdown-menu {
+    transform: translateY(37px) !important;
+}

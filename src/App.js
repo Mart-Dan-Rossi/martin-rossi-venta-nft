@@ -41,7 +41,6 @@ export default function App() {
       <Routes>
         <Route path='/' element={<ItemListContainer greeting={mensajeBienvenida}/>} />
         <Route path='/home' element={<ItemListContainer greeting={mensajeBienvenida}/>} />
-        {/* Paso el estado cantidadProductosEnCarrito para que se pueda utilizar el dato dentro del componente y también paso la función con la que se puede modificar para que pueda ser modificable dentro del mismo*/}
         <Route path='/producto/:idProducto' element={<ItemDetailContainer/>} />
         <Route path='/categoria/:categoryName' element={<Category greeting={mensajeBienvenida} />} />
         <Route path='/claseEventos' element={<ClaseEventos />} />
