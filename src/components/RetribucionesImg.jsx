@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Loading from './Loading'
 import {collection, getDocs, getFirestore} from 'firebase/firestore';
 import './RetribucionesImg.css'

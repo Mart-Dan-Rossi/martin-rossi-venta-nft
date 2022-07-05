@@ -21,7 +21,6 @@ function Category({greeting}) {
       .then((res)=>{
         setArrayNftsFiltrados(
           [...new Set(res.docs.map((producto) => (
-            //Por cada producto creo un objeto dentro del array que contenga las propiedades de los productos agregando el id que viene por separado
               {
                 id: producto.id,
                 ...producto.data()

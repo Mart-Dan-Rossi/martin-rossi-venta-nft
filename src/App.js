@@ -9,16 +9,12 @@ import NavBar from './components/NavBar';
 import RetribucionesImg from './components/RetribucionesImg';
 import MyProvider from './context/CartContext';
 
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import Checkout from './components/Checkout';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 
 
 export default function App() {
-  // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyAFiTDBaWEAvOR4vCTRw57gh1otGeyv7gQ",
     authDomain: "martin-nfts.firebaseapp.com",
