@@ -24,16 +24,12 @@ function ItemCount({inicial, item, onAdd}) {
 
     const clickBotonRestar = ()=> {
         contrastarInventario(cantidadSeleccioable - 1)
-        if (cantidadSeleccioable > 0) {
-            setCantidadSeleccioable(cantidadSeleccioable - 1)
-        }
+        cantidadSeleccioable > 0 && setCantidadSeleccioable(cantidadSeleccioable - 1)
     }
 
     const clickBotonSumar = ()=> {
         contrastarInventario(cantidadSeleccioable + 1)
-        if (cantidadSeleccioable + cantidadEsteProductoEnCarrito(nombre) < stock) {
-            setCantidadSeleccioable(cantidadSeleccioable + 1)
-        }
+        cantidadSeleccioable + cantidadEsteProductoEnCarrito(nombre) < stock && setCantidadSeleccioable(cantidadSeleccioable + 1)
     }
 
     const clickBotonSumarAlCarrito = (event)=> {
@@ -50,9 +46,7 @@ function ItemCount({inicial, item, onAdd}) {
             indicadorCantidadDisponible.classList.remove("resaltar-con-rojo");
             indicadorCantidadEnCarrito.classList.remove("resaltar-con-rojo");
         }
-        if (0 < cantidadSeleccioable && (cantidadEsteProductoEnCarrito(nombre) + cantidadSeleccioable) <= stock){
-            onAdd(cantidadSeleccioable)
-        }
+        0 < cantidadSeleccioable && (cantidadEsteProductoEnCarrito(nombre) + cantidadSeleccioable) <= stock && onAdd(cantidadSeleccioable)
     }
 
     return (
@@ -61,7 +55,7 @@ function ItemCount({inicial, item, onAdd}) {
             <div id={nombre} className="contenedor-parte-principal">
                 <div className="contenedor-control-inventario">
                     <span className='cantidad-disponible'>Disponibles: {stock}</span>
-                    <span className="cantidad-en-carrito">En carrito: {cantidadEsteProductoEnCarrito(nombre)}</span>
+                    <span className="cantidad-en-carrito">En carrito: {cantidadEsteProductoEnCarrito()}</span>
                 </div>
                 <div className="contenedor-selector-numerico">
                     <img className='boton-restar' src={iconoResta} alt="Botón restar" 
