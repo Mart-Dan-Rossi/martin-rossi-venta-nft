@@ -35,7 +35,7 @@ function ItemDetail({item}) {
         {mostrarItemCount ? 
            <ItemCount key={id} inicial={stock > 0 ? 1 : 0} item={item} onAdd={onAdd}/>
            : 
-            <div className="contenedor-navegacion-item-detail d-flex justify-content-center w-100">
+            <div className="contenedor-navegacion-item-detail d-flex w-100">
               <div className="col-3 justify-content-center d-flex">
                 <Link to={"/"} className='btn btn-primary'>Seguir comprando</Link>
               </div>

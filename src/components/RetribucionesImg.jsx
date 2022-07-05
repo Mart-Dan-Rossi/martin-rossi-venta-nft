@@ -38,6 +38,7 @@ function RetribucionesImg() {
                             <a href={nft.agradecimientoLink} target="_blank">
                               {nft.agradecimientoMensaje}
                             </a>
+                            <hr />
                           </div>
                   }
               })}          

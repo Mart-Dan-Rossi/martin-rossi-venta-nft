@@ -47,8 +47,8 @@ export default function MiCarrito({}) {
                               <div key={index}>
                                 <div className="card mb-3">
                                   <div className="card-body">
-                                    <div className="d-flex justify-content-between">
-                                      <div className="d-flex flex-row align-items-center contenedor-producto-en-carrito">
+                                    <div className="d-flex justify-content-between contenedor-producto-en-carrito">
+                                      <div className="d-flex align-items-center">
                                         <div>
                                           <img
                                             src={imgURL}
@@ -86,7 +86,7 @@ export default function MiCarrito({}) {
                       }
 
                       {cart.length > 0 && (
-                        <button type="button" className="btn btn-outline-danger" onClick={()=>{ vaciarCarrito() }}>Vaciar carrito</button>
+                        <button type="button" className="btn btn-outline-danger vaciar-carrito" onClick={()=>{ vaciarCarrito() }}>Vaciar carrito</button>
                       )}
                     </div>
                     {cart.length > 0 && (
@@ -94,7 +94,7 @@ export default function MiCarrito({}) {
                         <div className="card bg-primary text-white rounded-3">
                           <div className="card-body">
                             <div className="d-flex justify-content-between align-items-center mb-4">
-                              <h5 className="mb-0">Card details</h5>
+                              <h5 className="mb-0">Detalles de compra</h5>
                             </div>
                       
                             <hr className="my-4"/>

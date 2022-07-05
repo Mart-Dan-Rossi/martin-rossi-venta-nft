@@ -53,7 +53,8 @@ function Checkout() {
             const datosDeLaOrden = {
                 comprador: {nombre: nombreUsuario.valor, apellido: apellidoUsuario.valor, email: emailUsuario.valor, cel: celularUsuario.valor},
                 productos: cart,
-                precioTotal: obtenerPrecioTotal()
+                precioTotal: obtenerPrecioTotal(),
+                fechaDeCompra: (new Date())
             }
     
             vaciarCarrito()    

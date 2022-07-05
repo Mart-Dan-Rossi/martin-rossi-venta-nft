@@ -3,7 +3,7 @@
 }
 
 .contenedor-producto-en-carrito {
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .imágen-nft {
@@ -24,6 +24,7 @@
     margin-right: 5px;
 }
 
+
 .bg-negro {
     background-color: black;
 }
@@ -31,3 +32,12 @@
 .boton-finalizar-compra:hover {
     text-decoration: none;
 }
+
+@media screen and (max-width: 500px) {
+    .contenedor-producto-en-carrito {
+        flex-direction: column;
+    }
+    .vaciar-carrito {
+        margin-bottom: 15px;
+    }
+} 

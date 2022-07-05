@@ -26,7 +26,7 @@ function Item({nft}) {
        {/*La función primeraLetraAMatusc es propia de mi proyecto. Se encuentra en la carpeta utilidades.*/}
           <h5 className="card-title">{primeraLetraAMayusc(item.nombre)}</h5>
           <h5 className="card-title">{primeraLetraAMayusc(item.category)}</h5>
-          <p className='card-text'>En stock: {item.stock}/{item.existentes}</p>
+          <p className='card-text'>En stock: <span className='cantidad-en-stock'>{item.stock}/{item.existentes}</span></p>
           <p className="btn btn-primary">Detalles</p>
         </div>
       </div>

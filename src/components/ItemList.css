@@ -19,10 +19,23 @@
 
 .lista-nfts .card {
     width: 18rem;
-    margin: 0 10px;
+    margin: 0 10px 20px 0;
     border: 5px solid rgba(0,0,0,.125);
     border-radius: 8px;
     box-shadow: 4px 4px 7px 3px rgb(0 0 0 / 75%);
     color: black;
     text-decoration: none;
+}
+
+
+@media screen and (max-width: 530px) {
+    .lista-nfts .card {
+        width: 46vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cantidad-en-stock {
+        display: block;
+    }
 }
