@@ -8,12 +8,14 @@ function ItemCount({inicial, item, onAdd}) {
     const {nombre, stock, precio} = item
     const [cantidadSeleccioable, setCantidadSeleccioable] = useState(inicial)
     const {cantidadEsteProductoEnCarrito} = useContext(CartContext)
+
+    let cantidadEnCarrito = cantidadEsteProductoEnCarrito(nombre)
     
     const contrastarInventario = (cantidadSeleccionableActual)=> {
         const seccionEsteProducto = document.getElementById(`${nombre}`)
         const indicadorCantidadDisponible = seccionEsteProducto.querySelector(".cantidad-disponible")
         const indicadorCantidadEnCarrito = seccionEsteProducto.querySelector(".cantidad-en-carrito")
-        if (cantidadSeleccionableActual <= stock && cantidadSeleccionableActual + cantidadEsteProductoEnCarrito(nombre) <= stock) {
+        if (cantidadSeleccionableActual <= stock && cantidadSeleccionableActual + cantidadEnCarrito <= stock) {
             indicadorCantidadDisponible.classList.remove("resaltar-con-rojo")
             indicadorCantidadEnCarrito.classList.remove("resaltar-con-rojo");
         } else {
@@ -29,7 +31,7 @@ function ItemCount({inicial, item, onAdd}) {
 
     const clickBotonSumar = ()=> {
         contrastarInventario(cantidadSeleccioable + 1)
-        cantidadSeleccioable + cantidadEsteProductoEnCarrito(nombre) < stock && setCantidadSeleccioable(cantidadSeleccioable + 1)
+        cantidadSeleccioable + cantidadEnCarrito < stock && setCantidadSeleccioable(cantidadSeleccioable + 1)
     }
 
     const clickBotonSumarAlCarrito = (event)=> {
@@ -37,16 +39,16 @@ function ItemCount({inicial, item, onAdd}) {
         const indicadorCantidadDisponible = seccionEsteProducto.querySelector(".cantidad-disponible")
         const indicadorCantidadEnCarrito = seccionEsteProducto.querySelector(".cantidad-en-carrito")
         event.preventDefault()
-        if (cantidadEsteProductoEnCarrito(nombre) + cantidadSeleccioable >= stock) {
+        if (cantidadEnCarrito + cantidadSeleccioable >= stock) {
             setCantidadSeleccioable(0)
             indicadorCantidadDisponible.classList.add("resaltar-con-rojo");
             indicadorCantidadEnCarrito.classList.add("resaltar-con-rojo");
-        } else if (cantidadEsteProductoEnCarrito(nombre) + cantidadSeleccioable < stock) {
+        } else if (cantidadEnCarrito + cantidadSeleccioable < stock) {
             setCantidadSeleccioable(1)
             indicadorCantidadDisponible.classList.remove("resaltar-con-rojo");
             indicadorCantidadEnCarrito.classList.remove("resaltar-con-rojo");
         }
-        if(0 < cantidadSeleccioable && (cantidadEsteProductoEnCarrito(nombre) + cantidadSeleccioable) <= stock){
+        if(0 < cantidadSeleccioable && (cantidadEnCarrito + cantidadSeleccioable) <= stock){
             onAdd(cantidadSeleccioable)
         }
     }
@@ -57,7 +59,7 @@ function ItemCount({inicial, item, onAdd}) {
             <div id={nombre} className="contenedor-parte-principal">
                 <div className="contenedor-control-inventario">
                     <span className='cantidad-disponible'>Disponibles: {stock}</span>
-                    <span className="cantidad-en-carrito">En carrito: {cantidadEsteProductoEnCarrito(nombre)}</span>
+                    <span className="cantidad-en-carrito">En carrito: {cantidadEnCarrito}</span>
                 </div>
                 <div className="contenedor-selector-numerico">
                     <img className='boton-restar' src={iconoResta} alt="Botón restar" 
