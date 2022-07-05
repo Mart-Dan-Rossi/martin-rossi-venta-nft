@@ -17,7 +17,7 @@
 
 Para utilizar el proyecto al descargarlo deben correr el npm install para poder correrlo correctamente.
 
-Este proyecto está deployado en: 
+Este proyecto está deployado en firebase. Pueden encontrarlo en el siguiente link: (https://martin-nfts.web.app/)
 
 # Getting Started with Create React App
 
