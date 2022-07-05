@@ -42,7 +42,7 @@ export default function App() {
         <Route path='/home' element={<ItemListContainer greeting={mensajeBienvenida}/>} />
         <Route path='/producto/:idProducto' element={<ItemDetailContainer/>} />
         <Route path='/categoria/:categoryName' element={<Category greeting={mensajeBienvenida} />} />
-        <Route path='/miCarrito' element={<MiCarrito />} />
+        <Route path='/cart' element={<MiCarrito />} />
         <Route path='/checkout' element={<Checkout />} />
       </Routes>
         <RetribucionesImg />

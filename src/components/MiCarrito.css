@@ -2,6 +2,10 @@
     background-color: #eee;
 }
 
+.contenedor-producto-en-carrito {
+    flex-direction: column;
+}
+
 .imágen-nft {
     margin-right: 10px;
     width: 65px;

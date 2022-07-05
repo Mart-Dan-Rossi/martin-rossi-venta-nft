@@ -40,7 +40,7 @@ function ItemDetail({item}) {
                 <Link to={"/"} className='btn btn-primary'>Seguir comprando</Link>
               </div>
               <div className="col-3 justify-content-center d-flex">
-                <Link to="/miCarrito" className='btn btn-primary'>Ir al carrito</Link>
+                <Link to="/cart" className='btn btn-primary'>Ir al carrito</Link>
               </div>
             </div>
         }        

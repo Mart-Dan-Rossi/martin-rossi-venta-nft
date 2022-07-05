@@ -1,5 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
@@ -49,11 +48,11 @@ export default function MiCarrito({}) {
                                 <div className="card mb-3">
                                   <div className="card-body">
                                     <div className="d-flex justify-content-between">
-                                      <div className="d-flex flex-row align-items-center">
+                                      <div className="d-flex flex-row align-items-center contenedor-producto-en-carrito">
                                         <div>
                                           <img
                                             src={imgURL}
-                                            className="img-fluid rounded-3 imágen-nft" alt="Shopping item"/>
+                                            className="img-fluid rounded-3 imágen-nft" alt={`Imágen ${nombre}`} />
                                         </div>
                                         <div className="ms-3">
                                           <Link to={`/producto/${id}`}>

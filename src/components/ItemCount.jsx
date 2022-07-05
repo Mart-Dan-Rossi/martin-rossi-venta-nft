@@ -61,7 +61,7 @@ function ItemCount({inicial, item, onAdd}) {
             <div id={nombre} className="contenedor-parte-principal">
                 <div className="contenedor-control-inventario">
                     <span className='cantidad-disponible'>Disponibles: {stock}</span>
-                    <span className="cantidad-en-carrito">En carrito: {cantidadEsteProductoEnCarrito()}</span>
+                    <span className="cantidad-en-carrito">En carrito: {cantidadEsteProductoEnCarrito(nombre)}</span>
                 </div>
                 <div className="contenedor-selector-numerico">
                     <img className='boton-restar' src={iconoResta} alt="Botón restar" 

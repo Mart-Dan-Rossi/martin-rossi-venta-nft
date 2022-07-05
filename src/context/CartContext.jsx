@@ -6,7 +6,13 @@ export const CartContext = createContext()
 const { Provider } = CartContext;
 
 const MyProvider = ({ children }) => {
-    const [cart, setCart] = useState([])
+    let carritoEnLocalStorage = localStorage.getItem("carrito")
+    const [cart, setCart] = useState(carritoEnLocalStorage == null ? [] : JSON.parse(carritoEnLocalStorage))
+    
+    const setCarritoYLocalStorage = (arrayProductos)=> {
+        setCart(arrayProductos)
+        window.localStorage.setItem("carrito", JSON.stringify(arrayProductos))
+    }
 
     const isInCart = (id)=> {
         //Método Some es un método de array que devuelve un boolean
@@ -32,19 +38,19 @@ const MyProvider = ({ children }) => {
             arrayProductosAux[indexProducto].cantidadEnElCarrito += cantidadEnElCarrito
             
             //Actualizo el estado cart con la cantidad actualizada del producto
-            setCart(arrayProductosAux)
+            setCarritoYLocalStorage(arrayProductosAux)
         } else {
             //Si no estaba en el carrito agrego el nuevo item al cart reteniendo la info previa
-            setCart([...cart, newItem])
+            setCarritoYLocalStorage([...cart, newItem])
         }
     }
 
     const vaciarCarrito = ()=> {
-        return setCart([])
+        return setCarritoYLocalStorage([])
     }
 
     const borrarItem = (id)=> {
-        return setCart(cart.filter(producto => producto.id != id))
+        return setCarritoYLocalStorage(cart.filter(producto => producto.id != id))
     }
 
     const cantidadProductosEnCarrito = ()=> {
