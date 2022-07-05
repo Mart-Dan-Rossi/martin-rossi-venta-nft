@@ -6,7 +6,7 @@
     Al interactuar con lo mostrado en las galerias podrán obtener más informaciónd e cada uno de los NFTs y podrán agregarlos a sus carritos de compra. 
     En el carrito podrán confirmar la compra y rellenar un formulario con información necesaria para la realización del pedido.
 
-    ![Guía visual de compra](/public/gif-navegacion.gif)
+    [![Guía visual de compra](/public/gif-navegacion.gif)]
 
     Las únicas dependencias que utilizo son las brindadas como opcionales u obligatorias en la cursada y bootstrap que la utilizo para dar estilos de forma rápida a ciertas partes de mi sitio.
 
