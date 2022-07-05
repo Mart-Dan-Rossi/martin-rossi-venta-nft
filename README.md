@@ -2,10 +2,13 @@
     Este proyecto está orientado únicamente a practicar herramientas aprendidas durante el curso de React de CoderHouse.
 
     Emula ser una tienda de NFT´s. Estos NFT´s serían "coleccionables" cada uno con una cantidad limitada de ediciones, con un lore único y agrupadas en varios tipos.
-    Para navegar por el sitio los usuarios podrán acceder a una galería general donde verán todos los productos así como también podrá acceder a un filtro de tipos de NFTs. Más adelante
-agregaré el acceso al carrito de compras para que los usuarios puedan "concretarla".
+    Para navegar por el sitio los usuarios podrán acceder a una galería general donde verán todos los productos así como también podrá acceder a un filtro de tipos de NFTs. 
+    Al interactuar con lo mostrado en las galerias podrán obtener más informaciónd e cada uno de los NFTs y podrán agregarlos a sus carritos de compra. 
+    En el carrito podrán confirmar la compra y rellenar un formulario con información necesaria para la realización del pedido.
 
-    Las únicas dependencias que utilizo son las brindadas como opcionales u obligatorias en la cursada.
+    ![](/public/gif-navegacion.gif)
+
+    Las únicas dependencias que utilizo son las brindadas como opcionales u obligatorias en la cursada y bootstrap que la utilizo para dar estilos de forma rápida a ciertas partes de mi sitio.
 
     A continuación hay info relevante a react.
 <!-- Fin bienvenida -->
