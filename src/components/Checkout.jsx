@@ -36,11 +36,7 @@ function Checkout() {
     
 
     const validarFormulario = ()=> {
-        if(nombreUsuario.valido && apellidoUsuario.valido && emailUsuario.valido && celularUsuario.valido) {
-            setFormularioValido(true)
-        } else {
-            setFormularioValido(false)
-        }
+        (nombreUsuario.valido && apellidoUsuario.valido && emailUsuario.valido && celularUsuario.valido) ? setFormularioValido(true) : setFormularioValido(false)
     }
     
     const enviar = ()=> {
