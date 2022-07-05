@@ -7,7 +7,7 @@
     En el carrito podrán confirmar la compra y rellenar un formulario con información necesaria para la realización del pedido.
 
 
-    Las únicas dependencias que utilizo son las brindadas como opcionales u obligatorias en la cursada y bootstrap que la utilizo para dar estilos de forma rápida a ciertas partes de mi sitio.
+    Las únicas dependencias que utilizo son las brindadas como opcionales u obligatorias en la cursada y bootstrap 4.6 que la utilizo para dar estilos de forma rápida a ciertas partes de mi sitio.
 
     A continuación hay info relevante a react.
 <!-- Fin bienvenida -->
