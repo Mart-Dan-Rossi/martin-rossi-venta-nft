@@ -12,8 +12,12 @@
     A continuación hay info relevante a react.
 <!-- Fin bienvenida -->
 
+
 ![Guía visual de compra](/public/gif-navegacion.gif)
 
+Para utilizar el proyecto al descargarlo deben correr el npm install para poder correrlo correctamente.
+
+Este proyecto está deployado en: 
 
 # Getting Started with Create React App
 
